@@ -1,0 +1,88 @@
+/* Estilos Gerais */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #ffffff; /* Fundo branco */
+}
+
+/* Tela de Administração */
+#adm .container {
+    text-align: center;
+    max-width: 350px;
+    margin: auto;
+}
+
+/* Formulários */
+.form-container {
+    width: 90%;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: white;
+}
+
+form fieldset {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    padding: 15px;
+    min-width: 300px; /* Largura mínima para os campos */
+}
+
+form legend {
+    font-weight: bold;
+    padding: 0 10px;
+    margin-bottom: 10px;
+}
+
+form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    width: 100%; /* Garantir que o label ocupe toda a largura */
+}
+
+form input[type="text"],
+form input[type="password"],
+form input[type="date"],
+form select,
+form textarea {
+    width: 100%; /* Ocupa 100% da largura do campo */
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+form input[type="checkbox"],
+form input[type="radio"] {
+    margin-right: 5px;
+}
+
+form button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%; /* Botão ocupa toda a largura */
+}
+
+form button:hover {
+    background-color: #0056b3;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .form-container {
+        width: 100%; /* Ocupa toda a largura da tela em dispositivos menores */
+        padding: 10px;
+    }
+
+    form fieldset {
+        padding: 10px;
+    }
+}

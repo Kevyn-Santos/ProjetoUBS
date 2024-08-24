@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="./css/style.css"/>
+    <script src = "CEPRequest.js"></script>
+    <title>Formulário Completo</title>
+</head>
+<body>
+    <div class="form-container">
+        <form>
+            <fieldset>
+                <legend>Dados Gerais</legend>
+                <div class="row">
+                    <div class="column">
+                        <label for="tipo-notificacao">1 - Tipo de Notificação:</label>
+                        <select id="tipo-notificacao" name="tipo-notificacao">
+                            <option value="1">Individual</option>
+                        </select>
+                    </div>
+                    <div class="column">
+                        <label for="agravo">2 - Agravo/Doença:</label>
+                        <select id="agravo" name="agravo">
+                            <option value="1">Dengue</option>
+                            <option value="2">Chikungunya</option>
+                        </select>
+                    </div>
+                    <div class="column">
+                        <label for="codigo-cid10">3 - Código (CID10):</label>
+                        <input type="text" id="codigo-cid10" name="codigo-cid10">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="column">
+                        <label for="data-notificacao">4 - Data da Notificação:</label>
+                        <input type="date" id="data-notificacao" name="data-notificacao">
+                    </div>
+                    <div class="column">
+                        <label for="municipio-notificacao">5 - Município de Notificação:</label>
+                        <input type="text" id="municipio-notificacao" name="municipio-notificacao">
+                    </div>
+                    <div class="column">
+                        <label for="unidade-saude">6 - Unidade de Saúde (ou outra fonte notificadora):</label>
+                        <input type="text" id="unidade-saude" name="unidade-saude">
+                    </div>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Notificação Individual</legend>
+                <div class="row">
+                    <div class="column">
+                        <label for="nome-paciente">8 - Nome do Paciente:</label>
+                        <input type="text" id="nome-paciente" name="nome-paciente">
+                    </div>
+                    <div class="column">
+                        <label for="idade">10 - Idade:</label>
+                        <input type="number" id="idade" name="idade">
+                    </div>
+                    <div class="column">
+                        <label for="sexo">11 - Sexo:</label>
+                        <select id="sexo" name="sexo">
+                            <option value="M">Masculino</option>
+                            <option value="F">Feminino</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="column">
+                        <label for="gestante">12 - Gestante:</label>
+                        <select id="gestante" name="gestante">
+                            <option value="1">1º Trimestre</option>
+                            <option value="2">2º Trimestre</option>
+                            <option value="3">3º Trimestre</option>
+                            <option value="4">Não</option>
+                        </select>
+                    </div>
+                    <div class="column">
+                        <label for="raca-cor">13 - Raça/Cor:</label>
+                        <select id="raca-cor" name="raca-cor">
+                            <option value="1">Branca</option>
+                            <option value="2">Preta</option>
+                            <option value="3">Parda</option>
+                            <option value="4">Amarela</option>
+                        </select>
+                    </div>
+                    <div class="column">
+                        <label for="cartao-sus">14 - Número do Cartão SUS:</label>
+                        <input type="text" id="cartao-sus" name="cartao-sus">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="column">
+                        <label for="municipio-residencia">17 - Município de Residência:</label>
+                        <input type="text" id="municipio-residencia" name="municipio-residencia">
+                    </div>
+                    <div class="column">
+                        <label for="bairro">18 - Bairro:</label>
+                        <input type="text" id="bairro" name="bairro">
+                    </div>
+                    <div class="column">
+                        <label for="logradouro">21 - Logradouro (rua, avenida,...):</label>
+                        <input type="text" id="logradouro" name="logradouro">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="column">
+                        <label for="numero">23 - Número:</label>
+                        <input type="text" id="numero" name="numero">
+                    </div>
+                    <div class="column">
+                        <label for="cep">27 - CEP:</label>
+                        <input type="text" id="cep" name="cep" placeholder="xxxxxxxx" onchange="buscarEndereco()">
+                    </div>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Dados Clínicos e Laboratoriais</legend>
+                <div class="row">
+                    <div class="column">
+                        <label for="sintomas">31 - Sinais clínicos:</label>
+                        <textarea id="sintomas" name="sintomas"></textarea>
+                    </div>
+                    <div class="column">
+                        <label for="doencas">34 - Doenças pré-existentes:</label>
+                        <textarea id="doencas" name="doencas"></textarea>
+                    </div>
+                    <div class="column">
+                        <label for="data-coleta">35 - Data da Coleta:</label>
+                        <input type="date" id="data-coleta" name="data-coleta">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="column">
+                        <label for="exames">37 - Exames:</label>
+                        <textarea id="exames" name="exames"></textarea>
+                    </div>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Informações Complementares</legend>
+                <div class="row">
+                    <div class="column">
+                        <label for="observacoes">Observações Adicionais:</label>
+                        <textarea id="observacoes" name="observacoes"></textarea>
+                    </div>
+                </div>
+            </fieldset>
+
+            <button type="submit">Enviar</button>
+        </form>
+    </div>
+</body>
+</html>
