@@ -1,2 +1,2 @@
 # ProjetoUBS
- Contem pos arquivos do TCC para UBS.
+ Contem os arquivos do TCC para UBS.
