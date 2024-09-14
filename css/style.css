@@ -1,17 +1,130 @@
-/* Estilos Gerais */
-body {
+/* CSS fornecido */
+#body-telas {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
     background-color: #ffffff; /* Fundo branco */
+    position: relative;
 }
 
-/* Tela de Administração */
-#adm .container {
+/* Estilos para a seta de voltar */
+.back-arrow {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 24px;
+    color: #007bff;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.back-arrow:hover {
+    transform: scale(1.2); /* Aumenta o tamanho ao passar o mouse */
+}
+
+.container {
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
     max-width: 350px;
-    margin: auto;
+    width: 100%;
 }
+
+.container h2 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.icon-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    justify-items: center;
+}
+
+.icon-grid a {
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+    text-align: center;
+    background-color: #ffffff; /* Fundo branco para os links na página de usuário */
+    padding: 10px;
+    border-radius: 5px;
+    display: block;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Leve sombra para destacar os links */
+}
+
+.icon-grid a:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Sombra ao passar o mouse */
+}
+
+.icon-grid img,
+.icon {
+    width: 70px; /* Tamanho padrão para as imagens */
+    height: 70px; /* Tamanho padrão para as imagens */
+    display: block;
+    margin: 0 auto 10px auto;
+}
+
+.icon {
+    margin-bottom: 20px;
+}
+
+/* Botões azuis para "Entrar" na página de login e "Cadastrar", "Alterar", "Excluir" na página de cadastro de usuário */
+.container.login .buttons a,
+.container.cadastro-usuario a,.botao a {
+    flex: 1;
+    padding: 10px 0;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    text-align: center;
+    display: block;
+}
+
+.container.login .buttons a:hover,
+.container.cadastro-usuario a:hover,.botao a:hover {
+    background-color: #0056b3;
+}
+
+/* Estilo para o link "Esqueci a senha" na página de login */
+.container.login .forgot-password {
+    display: block;
+    margin-top: 15px;
+    text-decoration: none;
+    color: #007bff;
+}
+
+.container.login .forgot-password:hover {
+    text-decoration: underline;
+}
+
+.container input[type="text"],
+.container input[type="password"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin: 10px auto;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    display: block;
+}
+
+.container .buttons,.botao {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px; /* Espaço entre os botões */
+    margin-top: 20px; /* Espaço extra acima dos botões */
+}
+
+
+
 
 /* Formulários */
 .form-container {
@@ -47,6 +160,7 @@ form label {
 form input[type="text"],
 form input[type="password"],
 form input[type="date"],
+
 form select,
 form textarea {
     width: 100%; /* Ocupa 100% da largura do campo */
@@ -81,7 +195,7 @@ form button:hover {
         width: 100%; /* Ocupa toda a largura da tela em dispositivos menores */
         padding: 10px;
     }
-
+    
     form fieldset {
         padding: 10px;
     }

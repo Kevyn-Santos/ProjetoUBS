@@ -6,14 +6,22 @@
     <title>Usuário</title>
     <link rel="stylesheet" type="text/css" href="./css/style.css"/>
 </head>
-<body>
+<body id="body-telas">
+    <div class="back-arrow" onclick="voltarPagina()">
+        &#x2190;
+    </div>
     <div class="container usuario">
         <h2>Usuário</h2>
         <div class="icon-grid">
-            <a href="#"><img src="./imagens/formulario.png" alt="Formulário">Formulário</a>
-            <a href="#"><img src="./imagens/grafico.png" alt="Gráfico">Gráfico</a>
-            <a href="#"><img src="./imagens/consultar-png.png" alt="Consultar/Imprimir">Consultar/Imprimir</a>
+            <a href="./formulario.html"><img src="./imagens/formulario.png" alt="Formulário">Formulário</a>
+            <a href="./grafico.html"><img src="./imagens/grafico.png" alt="Gráfico">Gráfico</a>
+            <a href="./consulta_paciente.html"><img src="./imagens/consultar-png.png" alt="Consultar/Imprimir">Consultar/Imprimir</a>
         </div>
     </div>
+    <script>
+        function voltarPagina() {
+            window.history.back();
+        }
+    </script>
 </body>
 </html>

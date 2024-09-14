@@ -18,15 +18,18 @@ fetch(`https://viacep.com.br/ws/${cep}/json/`)
             } else {
                 // Preenche os campos do formulário
                 document.getElementById('logradouro').value = data.logradouro;
+                document.getElementById('logradouro').readOnly = "true";
                 document.getElementById('bairro').value = data.bairro;
+                document.getElementById('bairro').readOnly = "true";
                 document.getElementById('municipio-residencia').value = data.localidade;
+                document.getElementById('municipio-residencia').readOnly = "true";
                 //document.getElementById('Estado').value = data.uf;
  
                 //document.getElementById('resultado').innerHTML = '<p>Endereço encontrado!</p>';
             }
         })
         .catch(error => {
-            document.getElementById('resultado').innerHTML =
+            document.getElementById('cep').innerHTML =
                 '<input type="text" id="cep" name="cep" placeholder="Erro ao buscar o endereço. Verifique o CEP">';
         });
 }
