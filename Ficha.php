@@ -1,19 +1,24 @@
+<?php
+
+require __DIR__. "/vendor/autoload.php";
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="./css/style.css"/>
-    <script src="CEPRequest.js"></script>
-    <title>Formulário Completo</title>
+    <title>Ficha de Paciente</title>
 </head>
 <body>
-    <div class="back-arrow" onclick="voltarPagina()">
+    <div class="back-arrow">
         &#x2190;
     </div>
     <div class="form-container">
         
-        <form>
+        <form action="ProcessaFicha.php" Method="Post">
             <fieldset>
                 <legend>Dados Gerais</legend>
                 <div class="row">
@@ -191,7 +196,7 @@
                     </div>
                     <div class="column">
                         <label for="cep">27 - CEP:</label>
-                        <input type="text" id="cep" name="cep" onchange= "buscarEndereco()">
+                        <input type="text" id="cep" name="cep">
                     </div>
                     <div class="column">
                         <label for="telefone">28 - (DDD) Telefone:</label>
@@ -564,10 +569,5 @@
           </div>
         </form>
     </div>
-    <script>
-        function voltarPagina() {
-            window.history.back();
-        }
-    </script>
 </body>
 </html>
