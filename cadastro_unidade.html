@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro de Unidade</title>
     <link rel="stylesheet" href="./css/style.css"> <!-- Link para o arquivo de estilo externo -->
+    <script src="mascara.js"></script>
 </head>
 <body id="body-telas">
     <!-- Seta de voltar no canto superior direito -->
@@ -19,7 +20,8 @@
         </div>
         <input type="text" placeholder="UBS / UPA">
         <input type="text" placeholder="Nome">
-        <input type="text" placeholder="Localidade">
+        <input type="text" placeholder="Localidade" id = "Localidade">
+        <input type="text" placeholder="Telefone" id = "Telefone" oninput="mascaraTelefone(this)" maxlength="15"> <!-- executa a função mascaraTelefone assim que algum valor entra no campo, this indica que deve ser executado neste objeto -->
         <div class="botao">
             <a href="#">Cadastrar</a>
         </div>
