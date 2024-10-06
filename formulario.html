@@ -13,7 +13,7 @@
     </div>
     <div class="form-container">
         
-        <form>
+        <form method="POST" action="processaFormulario.php">
             <fieldset>
                 <legend>Dados Gerais</legend>
                 <div class="row">
@@ -141,6 +141,12 @@
                 
             <fieldset>
                 <legend>Dados de Residência</legend>
+
+                <div class="column">
+                    <label for="cep">27 - CEP:</label>
+                    <input type="text" id="cep" name="cep" onchange= "buscarEndereco()">
+                </div>
+                
                 <div class="row">
                     <div class="column">
                         <label for="uf-residencia">17 - UF:</label>
@@ -167,7 +173,6 @@
                         <input type="text" id="codigo-residencia" name="codigo-residencia">
                     </div>
                 </div>
-
                 <div class="row">
                     <div class="column">
                         <label for="numero">22 - Número:</label>
@@ -188,10 +193,6 @@
                     <div class="column">
                         <label for="ponto-referencia">26 - Ponto de Referência:</label>
                         <input type="text" id="ponto-referencia" name="ponto-referencia">
-                    </div>
-                    <div class="column">
-                        <label for="cep">27 - CEP:</label>
-                        <input type="text" id="cep" name="cep" onchange= "buscarEndereco()">
                     </div>
                     <div class="column">
                         <label for="telefone">28 - (DDD) Telefone:</label>
@@ -560,7 +561,7 @@
                 </div>
             </fieldset>
 
-            <button type="submit">Enviar</button>
+            <button type="submit" >Enviar</button>
           </div>
         </form>
     </div>
@@ -568,6 +569,7 @@
         function voltarPagina() {
             window.history.back();
         }
+        
     </script>
 </body>
 </html>

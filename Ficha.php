@@ -1,3 +1,5 @@
+
+
 <?php
 
 require __DIR__. "/vendor/autoload.php";
@@ -19,7 +21,7 @@ require __DIR__. "/vendor/autoload.php";
     <div class="form-container">
         
         <form action="ProcessaFicha.php" Method="Post">
-            <fieldset>
+            <fieldset readOnly>
                 <legend>Dados Gerais</legend>
                 <div class="row">
                     <div class="column">
@@ -566,6 +568,8 @@ require __DIR__. "/vendor/autoload.php";
             </fieldset>
 
             <button type="submit">Enviar</button>
+            <a href="processaFicha.php">Imprimir</a> 
+            <a href="#">Alterar</a> 
           </div>
         </form>
     </div>
