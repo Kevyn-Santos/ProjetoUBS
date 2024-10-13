@@ -12,7 +12,7 @@ function buscarEndereco() {
  
  
     // Faz a requisição à API ViaCEP
-fetch(`https://viacep.com.br/ws/${cep}/json/`)
+fetch(`https://cep.awesomeapi.com.br/json/${cep}`)
         .then(response => response.json())
         .then(data => {
             if (data.erro) {
@@ -20,18 +20,27 @@ fetch(`https://viacep.com.br/ws/${cep}/json/`)
                     alert('CEP não encontrado, tente novamente');
             } else {
                 // Preenche os campos do formulário
-                document.getElementById('logradouro').value = data.logradouro;
+                document.getElementById('logradouro').value = data.address;
                 document.getElementById('logradouro').readOnly = "true";
-                document.getElementById('bairro').value = data.bairro;
+
+                document.getElementById('bairro').value = data.district;
                 document.getElementById('bairro').readOnly = "true";
-                let MunicipioR = document.getElementById('municipio-residencia').value = data.localidade;
+
+                let MunicipioR = document.getElementById('municipio-residencia').value = data.city;
                 document.getElementById('municipio-residencia').readOnly = "true";
-                document.getElementById('uf-residencia').value = data.uf;
-                document.getElementById('codigo-ibge-residencia').value = data.ibge;
+
+                document.getElementById('uf-residencia').value = data.state;
+                document.getElementById('uf-residencia').readOnly = "true";
+
+                document.getElementById('codigo-ibge-residencia').value = data.city_ibge;
                 document.getElementById('codigo-ibge-residencia').readOnly ="true";
+                
                 document.getElementById('telefone').value = data.ddd;
                 document.getElementById('telefone').readOnly ="true";
-                document.getElementById('complemento').value = data.complemento;
+                
+                document.getElementById('geo1').value = data.lat;
+                document.getElementById('geo2').value = data.lng;
+                //document.getElementById('complemento').value = data.complemento;
 
                 if(MunicipioR == "Franco da Rocha" || MunicipioR == "Caieiras" || MunicipioR == "Mairiporã" || MunicipioR == "Francisco Morato"){
                     document.getElementById('destrito').value = "Unidade Administrativa Autônoma";

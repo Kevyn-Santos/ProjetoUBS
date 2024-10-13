@@ -1,9 +1,11 @@
+<?php session_start(); ?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Usuário</title>
+    <title> Usuário </title>
     <link rel="stylesheet" type="text/css" href="./css/style.css"/>
 </head>
 <body id="body-telas">
@@ -11,11 +13,13 @@
         &#x2190;
     </div>
     <div class="container usuario">
-        <h2>Usuário</h2>
+
+        <h2> Bem-Vindo <?php echo $_SESSION['nome']; ?> </h2>
+
         <div class="icon-grid">
-            <a href="./formulario.html"><img src="./imagens/formulario.png" alt="Formulário">Formulário</a>
-            <a href="./grafico.html"><img src="./imagens/grafico.png" alt="Gráfico">Gráfico</a>
-            <a href="./consulta_paciente.html"><img src="./imagens/consultar-png.png" alt="Consultar/Imprimir">Consultar/Imprimir</a>
+            <a href="./formulario.html"><img src="./img/formulario.jpeg" alt="Formulário">Formulário</a>
+            <a href="./grafico.html"><img src="./img/grafico_pizza.jpeg" alt="Gráfico">Gráfico</a>
+            <a href="./consulta_paciente.html"><img src="./img/consultar_form.jpeg" alt="Consultar/Imprimir">Consultar/Imprimir</a>
         </div>
     </div>
     <script>

@@ -13,7 +13,7 @@
     </div>
     <div class="form-container">
         
-        <form method="POST" action="">
+        <form method="POST" action="./functions/ProcessaFicha.php">
             <fieldset>
                 <legend>Dados Gerais</legend>
                 <div class="row">
@@ -72,7 +72,7 @@
                     </div>
                     <div class="column">
                         <label for="data-nascimento">9 - Data de Nascimento:</label>
-                        <input type="date" id="data-nascimento" name="data-nascimento   ">
+                        <input type="date" id="data-nascimento" name="data-nascimento">
                     </div>
                     <div class="column">
                         <label for="idade">10 - Idade:</label>
@@ -133,6 +133,10 @@
                         <input type="text" id="cartao-sus" name="cartao-sus">
                     </div>
                     <div class="column">
+                        <label for="cpf">15 - CPF:</label>
+                        <input type="text" id="cpf" name="cpf">
+                    </div>
+                    <div class="column">
                         <label for="nome-mae">16 - Nome da mãe:</label>
                         <input type="text" id="nome-mae" name="nome-mae">
                     </div>
@@ -143,10 +147,10 @@
                 <legend>Dados de Residência</legend>
 
                 <div class="column">
-                    <label for="cep">27 - CEP:</label>
-                    <input type="text" id="cep" name="cep" onchange= "buscarEndereco()">
-                </div>
-                
+                        <label for="cep">27 - CEP:</label>
+                        <input type="text" id="cep" name="cep" onchange = "buscarEndereco()">
+                    </div>
+                    
                 <div class="row">
                     <div class="column">
                         <label for="uf-residencia">17 - UF:</label>
@@ -155,11 +159,12 @@
                     <div class="column">
                         <label for="municipio-residencia">18 - Município de Residência:</label>
                         <input type="text" id="municipio-residencia" name="municipio-residencia">
+                        
                         <label for="codigo-ibge-residencia">Codigo IBGE:</label>
                         <input type="text" id="codigo-ibge-residencia" name="codigo-ibge-residencia">
                     </div>
                     <div class="column">
-                        <label for="bairro">19 - Destrito:</label>
+                        <label for="destrito">19 - Destrito:</label>
                         <input type="text" id="destrito" name="destrito">
                     </div>
                     <div class="column">
@@ -173,6 +178,7 @@
                         <input type="text" id="codigo-residencia" name="codigo-residencia">
                     </div>
                 </div>
+
                 <div class="row">
                     <div class="column">
                         <label for="numero">22 - Número:</label>
@@ -220,7 +226,7 @@
                     <legend>Investigador</legend>
                     <div class="column">
                         <label for="data-investigacao">31 - Data da investigação:</label>
-                        <input type="date" id="data-nascimento" name="data-nascimento">
+                        <input type="date" id="data-investigacao" name="data-investigacao">
                     </div>
                     <div class="column">
                         <label for="ocupacao">32 - Ocupação:</label>
@@ -435,8 +441,8 @@
                     <input type="text" id="distrito" name="distrito">
                 </div>
                 <div class="column">
-                    <label for="bairro">61 - Bairro:</label>
-                    <input type="text" id="bairro" name="bairro">
+                    <label for="bairro-conclusao">61 - Bairro:</label>
+                    <input type="text" id="bairro-conclusao" name="bairro-conclusao">
                 </div>
                 <div class="column">
                     <label for="classificacao">62 - Classificação:</label> <br>
@@ -561,7 +567,7 @@
                 </div>
             </fieldset>
 
-            <button type="submit" >Enviar</button>
+            <button type="submit">Enviar</button>
           </div>
         </form>
     </div>
@@ -569,7 +575,6 @@
         function voltarPagina() {
             window.history.back();
         }
-        
     </script>
 </body>
 </html>

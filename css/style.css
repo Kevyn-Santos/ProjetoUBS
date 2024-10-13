@@ -30,7 +30,7 @@
     background: white;
     border-radius: 15px;
     padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.9);
     text-align: center;
     max-width: 350px;
     width: 100%;
@@ -184,6 +184,7 @@ form button {
     cursor: pointer;
     width: 100%; /* Botão ocupa toda a largura */
 }
+
 
 form button:hover {
     background-color: #0056b3;

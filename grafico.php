@@ -10,7 +10,7 @@
     <div class="back-arrow" onclick="voltarPagina()">
         &#x2190;
     </div>
-    <img src="./imagens/img_power.png" alt="">
+    <img src="./img/img_power.png" alt="">
     <!-- <div class="container">
         <h2>Gráfico</h2>
         <div class="icon">
