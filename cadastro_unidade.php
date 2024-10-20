@@ -17,6 +17,25 @@ $sqlMunicipio = "SELECT * FROM municipio;";
   
 ?>
 
+<?php 
+require_once ('./vendor/autoload.php');
+session_start();
+
+use Monolog\Level;
+use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
+
+
+$log = new Logger('name');
+$log-> pushHandler(new StreamHandler('./logs/log.txt', level::Debug));
+
+if(isset($_POST['nome'])){
+$log->debug("Foi cadastrada uma nova unidade: ", 
+["username" => $_SESSION['nome'], "tipoUnidade" =>$_REQUEST['tipoUnidade'], "logradouro" => $_REQUEST['endereco'], "telefone" => $_REQUEST["telefone"],
+"NomeUnidade" => $_REQUEST['nome'], "Estado" =>$_REQUEST['uf'], "Cidade" => $_REQUEST['cidade']]);
+}
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>

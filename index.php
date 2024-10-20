@@ -1,4 +1,4 @@
-<?php include_once('functions/fnLogin.php'); include_once('functions/conn.php');?>
+<?php include_once('functions/fnLogin.php'); include_once('functions/conn.php'); require_once ('./vendor/autoload.php');?>
 
 <?php
 
@@ -7,6 +7,22 @@
     $stmt = $pdo-> query($sqlUnidades) or die("Falha na execção!"); 
     $resultadosUnidades = $stmt->fetchAll(PDO::FETCH_ASSOC);;
 
+
+?>
+
+<?php 
+
+use Monolog\Level;
+use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
+
+
+$log = new Logger('name');
+$log-> pushHandler(new StreamHandler('./logs/log.txt', level::Debug));
+
+if(isset($_POST['login'])){
+$log->debug('Tentativa de login realizada por:', ['USER' => $_REQUEST['login'] ]);
+}
 
 ?>
 

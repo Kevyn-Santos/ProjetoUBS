@@ -1,3 +1,8 @@
+<?php 
+//require_once ('./functions/log.php');
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -13,7 +18,7 @@
     </div>
     <div class="form-container">
         
-        <form method="POST" action="./functions/ProcessaFicha.php">
+        <form method="POST" action="./functions/processaFormulario.php">
             <fieldset>
                 <legend>Dados Gerais</legend>
                 <div class="row">
