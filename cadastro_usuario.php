@@ -56,7 +56,7 @@ use Monolog\Handler\StreamHandler;
 $logUser = new Logger('name');
 $logUser-> pushHandler(new StreamHandler('./logs/logUser.txt', level::Notice));
 
-if(isset($_POST['coren'])){
+if(isset($_POST['cadastrar'])){
 $logUser->notice("Um usuario foi cadastrado: ", ["Cadastrador" =>$_SESSION['nome'], "Username" => $_REQUEST['nome'], "coren" => $_REQUEST['coren'], "Acess" => $_REQUEST['nivelAcesso'], "Unidades" => $_SESSION['unidades']]);
 }
 ?>

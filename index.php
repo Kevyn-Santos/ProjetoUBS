@@ -21,7 +21,7 @@ $log = new Logger('name');
 $log-> pushHandler(new StreamHandler('./logs/log.txt', level::Debug));
 
 if(isset($_POST['login'])){
-$log->debug('Tentativa de login realizada por:', ['USER' => $_REQUEST['login'] ]);
+$log->debug('Tentativa de login realizada por:', ['username' => $_SESSION['nome'], 'USER' => $_REQUEST['login'] ]);
 }
 
 ?>

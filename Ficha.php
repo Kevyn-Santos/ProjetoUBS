@@ -3,7 +3,7 @@
 <?php
 
 require '../vendor/autoload.php';
-require './functions/log.php'; 
+//require './functions/log.php'; 
 
 ?>
 

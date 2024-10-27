@@ -1,5 +1,19 @@
 <?php 
 //require_once ('./functions/log.php');
+require_once("./functions/defcon.php");
+
+
+$sqlGenero = "SELECT * FROM genero;";
+$stmtG = $pdo->query($sqlGenero) or die("Falha na busca");
+$generos = $stmtG->fetchAll(PDO::FETCH_ASSOC);
+
+$sqlRaca = "SELECT * FROM raca;";
+$stmtR = $pdo->query($sqlRaca) or die("Falha na busca");
+$Racas = $stmtR->fetchAll(PDO::FETCH_ASSOC);
+
+$sqlEscolaridade = "SELECT * FROM escolaridade;";
+$stmtE = $pdo->query($sqlEscolaridade) or die("Falha na busca");
+$Escolaridade = $stmtE->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 
@@ -52,8 +66,8 @@
                     <div class="column">
                         <label for="municipio-notificacao">5 - Município de Notificação:</label>
                         <input type="text" id="municipio-notificacao" name="municipio-notificacao">
-                        <label for="codigo-ibge">Codigo IBGE:</label>
-                        <input type="text" id="codigo-ibge" name="codigo-ibge">
+                        <label for="codigo-ibge-MunicipioNotificacao">Codigo IBGE:</label>
+                        <input type="text" id="codigo-ibge-MunicipioNotificacao" name="codigo-ibge-MunicipioNotificacao">
                     </div>
                     <div class="column">
                         <label for="unidade-saude">6 - Unidade de Saúde (ou outra fonte notificadora):</label>
@@ -86,9 +100,11 @@
                     <div class="column">
                         <label for="sexo">11 - Sexo:</label>
                         <select id="sexo" name="sexo">
-                            <option value="M">Masculino</option>
-                            <option value="F">Feminino</option>
-                            <option value="I">Ignorado</option>
+
+                            <?php foreach($generos as $genero): ?>
+                                    <option value="<?= $genero['IdGenero']?>"> <?= $genero['sexo']?> </option>
+                            <?php endforeach;?>
+
                         </select>
                     </div>
                 </div>
@@ -109,28 +125,21 @@
                     <div class="column">
                         <label for="raca-cor">13 - Raça/Cor:</label>
                         <select id="raca-cor" name="raca-cor">
-                            <option value="1">Branca</option>
-                            <option value="2">Preta</option> 
-                            <option value="3">Amarela</option>
-                            <option value="4">Parda</option>
-                            <option value="5">Indígena</option>
-                            <option value="6">Ignorado</option>
+                            
+                            <?php foreach($Racas as $raca): ?>
+                                        <option value="<?= $raca['IdRaca']?>"> <?= $raca['raca']?> </option>
+                            <?php endforeach;?>
+
                         </select>
                     </div>
                     <div class="column">
                         <label for="raca-cor">14 - Escolaridade:</label>
                         <select id="escolaridade" name="escolaridade">
-                            <option value="0">0 - Analfabeto</option>
-                            <option value="1">1 - 1ª a 4ª série incompleta do EF (antigo primário ou 1º grau)</option> 
-                            <option value="2">2 - 4ª série completa do EF (antigo primário ou 1º grau)</option>
-                            <option value="3">3 - 5ª à 8ª série incompleta do EF (antigo ginásio ou 1º grau)</option>
-                            <option value="4">4 - Ensino fundamental completo (antigo ginásio ou 1º grau)</option>
-                            <option value="5">5 - Ensino médio incompleto (antigo colegial ou 2º grau)</option>
-                            <option value="6">6 - Ensino médio completo (antigo colegial ou 2º grau)</option>
-                            <option value="7">7 - Educação superior incompleta</option>
-                            <option value="8">8 - Educação superior completa</option>
-                            <option value="9">Ignorado</option>
-                            <option value="10">Não se aplica</option>
+
+                        <?php foreach($Escolaridade as $formacao): ?>
+                                        <option value="<?= $formacao['idEscolaridade']?>"> <?= $formacao['formacao']?> </option>
+                            <?php endforeach;?>
+
                         </select>
                     </div>
                     <div class="column">
@@ -138,8 +147,8 @@
                         <input type="text" id="cartao-sus" name="cartao-sus">
                     </div>
                     <div class="column">
-                        <label for="cpf">15 - CPF:</label>
-                        <input type="text" id="cpf" name="cpf">
+                        <label for="CPF">15 - CPF:</label>
+                        <input type="text" id="CPF" name="CPF">
                     </div>
                     <div class="column">
                         <label for="nome-mae">16 - Nome da mãe:</label>
@@ -244,30 +253,30 @@
                 <div class="row">
                     <div class="column">
                         <label for="sintomas">33 - Sinais clínicos:</label><br>
-                        <input type="checkbox" id="febre" name="febre">Febre
-                        <input type="checkbox" id="cefaleia" name="cefaleia">Cefaleia
-                        <input type="checkbox" id="vomito" name="vomito">Vômito
-                        <input type="checkbox" id="dor-nas-costas" name="dor-nas-costas">Dor nas costas
-                        <input type="checkbox" id="artrite" name="artrite">Artrite
-                        <input type="checkbox" id="petequias" name="petequias">Petéquias
-                        <input type="checkbox" id="prova-do-laco-positiva" name="prova-do-laco-positiva">Prova do laço positiva
-                        <input type="checkbox" id="mialgia" name="mialgia">Mialgia  <br>
-                        <input type="checkbox" id="exantema" name="exantema">Exantema
-                        <input type="checkbox" id="nauseas" name="nauseas">Náuseas
-                        <input type="checkbox" id="conjutivite" name="conjutivite">Conjutivite
-                        <input type="checkbox" id="artralgia-intensa" name="artralgia-intensa">Artralgia intensa
-                        <input type="checkbox" id="leucopenia" name="leucopenia">Leucopenia
-                        <input type="checkbox" id="dor-retroorbital" name="dor-retroorbital">Dor retroorbital
+                        <input type="checkbox" id="febre" name="Sinais-Clinicos[]" value="Febre">Febre
+                        <input type="checkbox" id="cefaleia" name="Sinais-Clinicos[]" value="Cefaleia">Cefaleia
+                        <input type="checkbox" id="vomito" name="Sinais-Clinicos[]" value="Vômito">Vômito
+                        <input type="checkbox" id="dor-nas-costas" name="Sinais-Clinicos[]" value="">Dor nas costas
+                        <input type="checkbox" id="artrite" name="Sinais-Clinicos[]" value="Dor nas costas">Artrite
+                        <input type="checkbox" id="petequias" name="Sinais-Clinicos[]" value="Petéquias">Petéquias
+                        <input type="checkbox" id="prova-do-laco-positiva" name="Sinais-Clinicos[]" value="Prova do laço positiva">Prova do laço positiva
+                        <input type="checkbox" id="mialgia" name="Sinais-Clinicos[]" value="Mialgia">Mialgia  <br>
+                        <input type="checkbox" id="exantema" name="Sinais-Clinicos[]" value="Exantema">Exantema
+                        <input type="checkbox" id="nauseas" name="Sinais-Clinicos[]" value="Náuseas">Náuseas
+                        <input type="checkbox" id="conjutivite" name="Sinais-Clinicos[]" value="Conjutivite">Conjutivite
+                        <input type="checkbox" id="artralgia-intensa" name="Sinais-Clinicos[]" value="Artralgia intensa">Artralgia intensa
+                        <input type="checkbox" id="leucopenia" name="Sinais-Clinicos[]" value="Leucopenia">Leucopenia
+                        <input type="checkbox" id="dor-retroorbital" name="Sinais-Clinicos[]" value="Dor retroorbital" >Dor retroorbital
                     </div>
                     <div class="column">
                         <label for="doencas">34 - Doenças pré-existentes:</label>   <br>
-                        <input type="checkbox" id="diabete" name="diabete">Diabetes
-                        <input type="checkbox" id="hepatopatias" name="hepatopatias">Hepatopatias
-                        <input type="checkbox" id="hipertensao-arterial" name="hipertensao-arterial">Hipertensão arterial
-                        <input type="checkbox" id="doenças-auto-imunes" name="doencas-auto-imunes">Doenças auto-imunes  <br>
-                        <input type="checkbox" id="doencas-hematologicas" name="doencas-hematologicas">Doenças hematológicas
-                        <input type="checkbox" id="doenca-renal-cronica" name="doenca-renal-cronica">Doença renal crônica
-                        <input type="checkbox" id="doenca-acido-peptica" name="doenca-acido-peptica">Doença ácido-péptica
+                        <input type="checkbox" id="diabete" name="DoencasPreExistentes[]" value="Diabetes">Diabetes
+                        <input type="checkbox" id="hepatopatias" name="DoencasPreExistentes[]" value="Hepatopatias">Hepatopatias
+                        <input type="checkbox" id="hipertensao-arterial" name="DoencasPreExistentes[]" value="Hipertensão arterial">Hipertensão arterial
+                        <input type="checkbox" id="doenças-auto-imunes" name="DoencasPreExistentes[]" value="Doenças auto-imunes">Doenças auto-imunes  <br>
+                        <input type="checkbox" id="doencas-hematologicas" name="DoencasPreExistentes[]" value="Doenças hematológicas">Doenças hematológicas
+                        <input type="checkbox" id="doenca-renal-cronica" name="DoencasPreExistentes[]" value="Doença renal crônica">Doença renal crônica
+                        <input type="checkbox" id="doenca-acido-peptica" name="DoencasPreExistentes[]" value="Doença ácido-péptica">Doença ácido-péptica
                     </div>
                 </fieldset> 
                 <fieldset>   
@@ -283,24 +292,24 @@
                     </div>
                     <h4>Exame PRNT</h4>
                     <div class="column">
-                        <label for="data-coleta">37 - Data da Coleta:</label>
-                        <input type="date" id="data-coleta" name="data-coleta">
+                        <label for="data-coleta-PRNT">37 - Data da Coleta:</label>
+                        <input type="date" id="data-coleta-PRNT" name="data-coleta-PRNT">
                     </div>
                     <div>
                     <label for="resultado">38 - Resultado:</label>   <br>
-                        <input type="radio" id="febre" name="febre">S1
-                        <input type="radio" id="febre" name="febre">S2
-                        <input type="radio" id="febre" name="febre">PRNT
+                        <input type="radio" id="febre" name="ops" value = "S1">S1
+                        <input type="radio" id="febre" name="ops" value = "S2">S2
+                        <input type="radio" id="febre" name="ops" value = "PRNT">PRNT
                     </div>
 
                     <h4>Sorologia (IgM) Dengue</h4>
                     <div class="column">
-                        <label for="data-coleta">39 - Data da Coleta:</label>
-                        <input type="date" id="data-coleta" name="data-coleta">
+                        <label for="data-coleta-dengue">39 - Data da Coleta:</label>
+                        <input type="date" id="data-coleta-dengue" name="data-coleta-dengue">
                     </div>
                     <div class="column">
-                        <label for="resultado">40 - Resultado</label>
-                        <select id="resultado" name="resultado">
+                        <label for="resultadoDengue">40 - Resultado</label>
+                        <select id="resultadoDengue" name="resultadoDengue">
                             <option value="1">Positivo</option>
                             <option value="2">Negativo</option> 
                             <option value="3">Inconclusivo</option>
@@ -309,12 +318,12 @@
                     </div>
                     <h4>Exame NS1</h4>
                     <div class="column">
-                        <label for="data-coleta">41 - Data da Coleta:</label>
-                        <input type="date" id="data-coleta" name="data-coleta">
+                        <label for="data-coleta-NS1">41 - Data da Coleta:</label>
+                        <input type="date" id="data-coleta-NS1" name="data-coleta-NS1">
                     </div>
                     <div class="column">
-                        <label for="resultado">42 - Resultado</label>
-                        <select id="resultado" name="resultado">
+                        <label for="resultadoNS1">42 - Resultado</label>
+                        <select id="resultadoNS1" name="resultadoNS1">
                             <option value="1">Positivo</option>
                             <option value="2">Negativo</option> 
                             <option value="3">Inconclusivo</option>
@@ -323,12 +332,12 @@
                     </div>
                     <h4>Isolamento</h4>
                     <div class="column">
-                        <label for="data-coleta">43 - Data da Coleta:</label>
-                        <input type="date" id="data-coleta" name="data-coleta">
+                        <label for="data-isolamento">43 - Data da Coleta:</label>
+                        <input type="date" id="data-isolamento" name="data-isolamento">
                     </div>
                     <div class="column">
-                        <label for="resultado">44 - Resultado</label>
-                        <select id="resultado" name="resultado">
+                        <label for="resultadoIsolamento">44 - Resultado</label>
+                        <select id="resultadoIsolamento" name="resultadoIsolamento">
                             <option value="1">Positivo</option>
                             <option value="2">Negativo</option> 
                             <option value="3">Inconclusivo</option>
@@ -337,12 +346,12 @@
                     </div>
                     <h4>RT-PCR</h4>
                     <div class="column">
-                        <label for="data-coleta">45 - Data da Coleta:</label>
-                        <input type="date" id="data-coleta" name="data-coleta">
+                        <label for="data-coleta-RTPCR">45 - Data da Coleta:</label>
+                        <input type="date" id="data-coleta-RTPCR" name="data-coleta-RTPCR">
                     </div>
                     <div class="column">
-                        <label for="resultado">46 - Resultado</label>
-                        <select id="resultado" name="resultado">
+                        <label for="resultadoRTPCR">46 - Resultado</label>
+                        <select id="resultadoRTPCR" name="resultadoRTPCR">
                             <option value="1">Positivo</option>
                             <option value="2">Negativo</option> 
                             <option value="3">Inconclusivo</option>
@@ -388,9 +397,9 @@
                 <div class="row">
                     <div class="column">
                         <label for="hospitalizacao">50 - Ocorreu Hospitalização?</label> <br>
-                        <input type="radio" id="sim" name="opt1">Sim
-                        <input type="radio" id="nao" name="opt1">Não
-                        <input type="radio" id="ignorado" name="opt1">Ignorado
+                        <input type="radio" id="sim" name="hosp" value="Sim">Sim
+                        <input type="radio" id="nao" name="hosp" value="Não">Não
+                        <input type="radio" id="ignorado" name="hosp" value="Ignorado">Ignorado
                     </div>
                     <div class="column">
                         <label for="data-internacao">51 - Data da Internação:</label>
@@ -404,13 +413,13 @@
                         <label for="municipio-hospital">53 - Município do Hospital:</label>
                         <input type="text" id="municipio-hospital" name="municipio-hospital">
                         <label for="codigo-ibge">Codigo IBGE:</label>
-                        <input type="text" id="codigo-ibge" name="codigo-ibge">
+                        <input type="text" id="codigo-ibge" name="codigo-ibge-hospitalizacao">
                     </div>
                     <div class="column">
                         <label for="nome-hospital">54 - Nome do Hospital:</label>
                         <input type="text" id="nome-hospital" name="nome-hospital">
                         <label for="codigo">Codigo:</label>
-                        <input type="text" id="codigo" name="codigo">
+                        <input type="text" id="codigo" name="codigo-Hospital">
                     </div>
                     <div class="column">
                         <label for="tel-hospital">55 - (DDD) Telefone:</label>
@@ -422,59 +431,59 @@
                 <legend>Conclusão</legend>  
                 <h4>Local Provável de Infecção (no período de 15 dias)</h4>
                 <div class="column">
-                    <label for="hospitalizacao">56 - O caso é autóctone do município de residência?</label> <br>
-                    <input type="radio" id="sim" name="opt2">Sim
-                    <input type="radio" id="nao" name="opt2">Não
-                    <input type="radio" id="ignorado" name="opt2">Ignorado
+                    <label for="Local-infeccao">56 - O caso é autóctone do município de residência?</label> <br>
+                    <input type="radio" id="sim" name="loc" value="Sim">Sim
+                    <input type="radio" id="nao" name="loc" value="Não">Não
+                    <input type="radio" id="ignorado" name="loc" value="Ignorado">Ignorado
                 </div>
                 <div class="column">
                     <label for="uf">57 - UF:</label>
-                    <input type="text" id="uf" name="uf">
+                    <input type="text" id="uf" name="uf-Infeccao">
                 </div>
                 <div class="column">
                     <label for="pais">58 - País:</label>
-                    <input type="text" id="pais" name="pais">
+                    <input type="text" id="pais" name="pais-infeccao">
                 </div>
                 <div class="column">
                     <label for="municipio-local">59 - Município:</label>
-                    <input type="text" id="municipio-local" name="municipio-local">
+                    <input type="text" id="municipio-local" name="municipio-Infeccao">
                     <label for="codigo-ibge">Codigo IBGE:</label>
-                    <input type="text" id="codigo-ibge" name="codigo-ibge">
+                    <input type="text" id="codigo-ibge" name="codigo-ibge-Infeccao">
                 </div>
                 <div class="column">
                     <label for="distrito">60 - Distrito:</label>
-                    <input type="text" id="distrito" name="distrito">
+                    <input type="text" id="distrito" name="distrito-infeccao">
                 </div>
                 <div class="column">
                     <label for="bairro-conclusao">61 - Bairro:</label>
-                    <input type="text" id="bairro-conclusao" name="bairro-conclusao">
+                    <input type="text" id="bairro-conclusao" name="bairro-Infeccao">
                 </div>
                 <div class="column">
                     <label for="classificacao">62 - Classificação:</label> <br>
-                    <input type="radio" id="descartado" name="opt3">Descartado
-                    <input type="radio" id="dengue" name="opt3">Dengue
-                    <input type="radio" id="dengue-sinais" name="opt3">Dengue com Sinais de Alarme
-                    <input type="radio" id="dengue-grave" name="opt3">Dengue Grave
-                    <input type="radio" id="chikungunya" name="opt3">Chikungunya
+                    <input type="radio" id="descartado" name="class" value="Descartado">Descartado
+                    <input type="radio" id="dengue" name="class" value="Dengue">Dengue
+                    <input type="radio" id="dengue-sinais" name="class" value="Dengue com Sinais de Alarme">Dengue com Sinais de Alarme
+                    <input type="radio" id="dengue-grave" name="class" value="Dengue Grave">Dengue Grave
+                    <input type="radio" id="chikungunya" name="class" value="Chikungunya">Chikungunya
                 </div>
                 <div class="column">
                     <label for="classificacao">63 - Critério de Confirmação/Descarte:</label> <br>
-                    <input type="radio" id="laboratorio" name="opt4">Laboratório
-                    <input type="radio" id="clinico" name="opt4">Clínico Epidemiológico
-                    <input type="radio" id="investigacao" name="opt4">Em investigação
+                    <input type="radio" id="laboratorio" name="conf" value="Laboratório">Laboratório
+                    <input type="radio" id="clinico" name="conf" value="Clínico Epidemiológico">Clínico Epidemiológico
+                    <input type="radio" id="investigacao" name="conf" value="Em investigação">Em investigação
                 </div>
                 <div class="column">
                     <label for="apres-clinica">64 - Apresentação clínica:</label> <br>
-                    <input type="radio" id="aguda" name="opt5">Aguda
-                    <input type="radio" id="cronica" name="opt5">Crônica
+                    <input type="radio" id="aguda" name="apr" value="Aguda">Aguda
+                    <input type="radio" id="cronica" name="apr" value="Crônica">Crônica
                 </div>
                 <div class="column">
                     <label for="classificacao">65 - Evolução do Caso:</label> <br>
-                    <input type="radio" id="cura" name="opt6">Cura
-                    <input type="radio" id="obito-agravo" name="opt6">Óbito pelo agravo
-                    <input type="radio" id="obito-causas" name="opt6">Óbito por outras causas
-                    <input type="radio" id="obito-inv" name="opt6">Óbito em investigação
-                    <input type="radio" id="ignorado" name="opt6">Ignorado
+                    <input type="radio" id="cura" name="evo" value="Cura">Cura
+                    <input type="radio" id="obito-agravo" name="evo" value="Óbito pelo agravo">Óbito pelo agravo
+                    <input type="radio" id="obito-causas" name="evo" value="Óbito por outras causas">Óbito por outras causas
+                    <input type="radio" id="obito-inv" name="evo" value="Óbito em investigação">Óbito em investigação
+                    <input type="radio" id="ignorado" name="evo" value="Ignorado">Ignorado
                 </div>
                 <div class="column">
                     <label for="data-obito">66 - Data do Óbito:</label>
@@ -492,15 +501,15 @@
                     <legend>Dados Clínicos - Dengue com Sinais de Alarme e Dengue Grave</legend>
                     <div class="column">
                         <label for="sinais">68 - Dengue com sinais de alarme:</label>   <br>
-                        <input type="checkbox" id="hipotencao" name="hipotencao">Hipotensão postural e/ou lipotímia
-                        <input type="checkbox" id="queda-abrupta" name="queda-abrupta">Queda abrupta de plaquetas
-                        <input type="checkbox" id="vomitos" name="vomitos">Vômitos persistentes  
-                        <input type="checkbox" id="dor-abdominal" name="dor-abdominal">Dor abdominal intensa e contínua
-                        <input type="checkbox" id="letargia" name="letargia">Letargia ou irritabilidade <br>
-                        <input type="checkbox" id="sangramento" name="sangramento">Sangramento de mucosa/outras hemorragias
-                        <input type="checkbox" id="aum-progressivo" name="aum-progressivo">Aumento progressivo do hematócrito
-                        <input type="checkbox" id="hepatomegalia" name="hepatomegalia">Hepatomegalia >= 2cm
-                        <input type="checkbox" id="acumulo-liq" name="acumulo-liq">Acúmulo de líquidos
+                        <input type="checkbox" id="hipotencao" name="dengueAlarme[]" value="Hipotensão postural e/ou lipotímia">Hipotensão postural e/ou lipotímia
+                        <input type="checkbox" id="queda-abrupta" name="dengueAlarme[]" value="Queda abrupta de plaquetas">Queda abrupta de plaquetas
+                        <input type="checkbox" id="vomitos" name="dengueAlarme[]" value="Vômitos persistentes">Vômitos persistentes  
+                        <input type="checkbox" id="dor-abdominal" name="dengueAlarme[]" value="Dor abdominal intensa e contínua">Dor abdominal intensa e contínua
+                        <input type="checkbox" id="letargia" name="dengueAlarme[]" value="Letargia ou irritabilidade">Letargia ou irritabilidade <br>
+                        <input type="checkbox" id="sangramento" name="dengueAlarme[]" value="Sangramento de mucosa/outras hemorragias">Sangramento de mucosa/outras hemorragias
+                        <input type="checkbox" id="aum-progressivo" name="dengueAlarme[]" value="Aumento progressivo do hematócrito">Aumento progressivo do hematócrito
+                        <input type="checkbox" id="hepatomegalia" name="dengueAlarme[]" value="Hepatomegalia >= 2cm">Hepatomegalia >= 2cm
+                        <input type="checkbox" id="acumulo-liq" name="dengueAlarme[]" value="Acúmulo de líquidos">Acúmulo de líquidos
                     </div>
                     <div class="column">
                         <label for="data-inicio-sinais">69 - Data de início dos sinais de alarme:</label>
@@ -510,30 +519,30 @@
                         <br>
                         <label for="dengue-grave">70 - Dengue com sinais de alarme:</label>   <br>
                         <h4>extravasamento grave de plasma</h4>
-                        <input type="checkbox" id="pulso" name="pulso">Pulso débil ou indetectável
-                        <input type="checkbox" id="convergente" name="convergente">PA convergente <= 20 mmHg
-                        <input type="checkbox" id="capilar" name="capilar">Tempo de enchimento capilar 
-                        <input type="checkbox" id="insuficiencia" name="insuficiencia">Acúmulo de líquidos com insuficiência respiratória
-                        <input type="checkbox" id="tarquicardia" name="tarquicardia">Taquicardia <br>
-                        <input type="checkbox" id="extremidades" name="extremidades">Extremidades frias
-                        <input type="checkbox" id="hipotencao" name="hipotensao">Hipotensão arterial em fase tardia
+                        <input type="checkbox" id="pulso" name="dengueGrave[]" value="Pulso débil ou indetectável">Pulso débil ou indetectável
+                        <input type="checkbox" id="convergente" name="dengueGrave[]" value="PA convergente <= 20 mmHg">PA convergente <= 20 mmHg
+                        <input type="checkbox" id="capilar" name="dengueGrave[]" value="Tempo de enchimento capilar">Tempo de enchimento capilar 
+                        <input type="checkbox" id="insuficiencia" name="dengueGrave[]" value="Acúmulo de líquidos com insuficiência respiratória">Acúmulo de líquidos com insuficiência respiratória
+                        <input type="checkbox" id="tarquicardia" name="dengueGrave[]" value="Taquicardia">Taquicardia <br>
+                        <input type="checkbox" id="extremidades" name="dengueGrave[]" value="Extremidades frias">Extremidades frias
+                        <input type="checkbox" id="hipotencao" name="dengueGrave[]" value="Hipotensão arterial em fase tardia">Hipotensão arterial em fase tardia
                     </div>
                     <div class="column">
                         <br>
                         <h4>sangramento grave</h4>
-                        <input type="checkbox" id="hematemese" name="hematemese">Hematêmese
-                        <input type="checkbox" id="melena" name="melena">Melena
-                        <input type="checkbox" id="volumosa" name="volumosa">Metrorragia volumosa
-                        <input type="checkbox" id="sangramento" name="sangramento">Sangramento do SNC
+                        <input type="checkbox" id="hematemese" name="sangramento[]" value="Hematêmese">Hematêmese
+                        <input type="checkbox" id="melena" name="sangramento[]" value="Melena">Melena
+                        <input type="checkbox" id="volumosa" name="sangramento[]" value="Metrorragia volumosa">Metrorragia volumosa
+                        <input type="checkbox" id="sangramento" name="sangramento[]" value="Sangramento do SNC">Sangramento do SNC
                     </div>
                     <div class="column">
                         <br>
                         <h4>compromentimento grave de órgãos</h4>
-                        <input type="checkbox" id="ast" name="ast">AST/ALT > 1.000
-                        <input type="checkbox" id="miocardite" name="miocardite">Miocardite
-                        <input type="checkbox" id="conciencia" name="conciencia">Alteração da consciência
-                        <input type="checkbox" id="especificar" name="especificar">Outros órgãos, especificar
-                        <input type="text" id="especificar" name="especificar">
+                        <input type="checkbox" id="ast" name="compOrgaos[]" value="AST/ALT > 1.000">AST/ALT > 1.000
+                        <input type="checkbox" id="miocardite" name="compOrgaos[]" value="Miocardite">Miocardite
+                        <input type="checkbox" id="conciencia" name="compOrgaos[]" value="Alteração da consciência">Alteração da consciência
+                        <input type="checkbox" id="especificar" name="compOrgaos[]" value="Outros órgãos:">Outros órgãos, especificar
+                        <input type="text" id="especificacao" name="compOrgaos[]">
                     </div>
                     <div class="column">
                         <br>
@@ -556,11 +565,11 @@
                 <legend>Investigador</legend>
                 <div class="column">
                     <label for="unidade">Município/Unidade de Saúde:</label>
-                    <input type="text" id="unidade" name="unidade">
+                    <input type="text" id="unidade" name="unidadeInvestigador">
                 </div>
                 <div class="column">
                     <label for="cod-unidade">Cód. da Unid. de Saúde:</label>
-                    <input type="text" id="cod-unidade" name="cod-unidade">
+                    <input type="text" id="cod-unidade" name="cod-unidade-Investigador">
                 </div>
                 <div class="column">
                     <label for="nome-inv">Nome:</label>

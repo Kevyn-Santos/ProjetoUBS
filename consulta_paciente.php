@@ -23,7 +23,7 @@
       
         <div class="botao">
             <a href="#">Consultar</a>
-            <a href="#">Imprimir</a>
+            <a href="Ficha.php">Imprimir</a>
             <a href="#">Alterar</a>
             <a href="#">Enviar</a>
         </div>

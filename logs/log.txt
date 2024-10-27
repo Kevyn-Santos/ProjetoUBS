@@ -1,1 +1,3 @@
-
+[2024-10-22T00:44:19.668643+02:00] name.DEBUG: Tentativa de login realizada por: {"username":"Kevyn Santos da Silva","USER":"K1234"} []
+[2024-10-22T01:02:16.726875+02:00] name.DEBUG: Tentativa de login realizada por: {"username":"Kevyn Santos da Silva","USER":"K1234"} []
+[2024-10-22T01:37:32.704727+02:00] name.DEBUG: Tentativa de login realizada por: {"username":"Kevyn Santos da Silva","USER":"K1234"} []

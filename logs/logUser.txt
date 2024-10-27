@@ -1,2 +1,1 @@
-[2024-10-20T17:36:19.355327+02:00] name.NOTICE: Um usuario foi cadastrado:  {"Cadastrador":"Kevyn Santos da Silva","Username":null,"coren":"1235","Acess":"2","Unidades":["7"]} []
-[2024-10-20T17:37:27.721059+02:00] name.NOTICE: Um usuario foi cadastrado:  {"Cadastrador":"Kevyn Santos da Silva","Username":"Andre","coren":"9512","Acess":"1","Unidades":["4"]} []
+[2024-10-22T01:37:53.070019+02:00] name.NOTICE: Um usuario foi cadastrado:  {"Cadastrador":"Kevyn Santos da Silva","Username":"saulo","coren":"4562","Acess":"1","Unidades":[]} []
