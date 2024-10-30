@@ -1,5 +1,5 @@
-CREATE DATABASE projectTCC;
-USE projectTCC;
+CREATE DATABASE projeto_tcc;
+USE projeto_tcc;
 
 
 
@@ -72,6 +72,83 @@ CREATE TABLE Local_infeccao ( -- Ta certa
   bairro VARCHAR(80) NULL,
   idConsulta INT
 );
+
+CREATE TABLE Municipio ( -- OK
+  IdMunicipio INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  codigoIBGE INT,
+  cidade VARCHAR(50) NOT NULL
+);
+INSERT INTO Municipio (codigoIBGE, cidade)
+    VALUES
+    ( '3516408', 'Franco da Rocha'),
+    ('3509007','Caieiras'),
+    ('3516309','Francisco Morato'),
+    ('3528502','Mairiporã'),
+    ('3509205','Cajamar');
+
+CREATE TABLE Gestante( -- OK
+IdGestante INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+gestacao VARCHAR(30) NOT NULL
+);
+INSERT INTO Gestante (gestacao)
+    VALUES ('1º Trimestre'), ('2º Trimestre'), ('3º Trimestre'), ('Ignorado'), ('Não'), ('Não se aplica');
+
+
+CREATE TABLE Genero ( -- OK
+  IdGenero INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  sexo VARCHAR(15) NOT NULL
+);
+ INSERT INTO Genero (sexo)
+    VALUES
+    ('Masculino'), ('Feminino');
+
+
+CREATE TABLE Raca (  -- OK
+  IdRaca INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  raca VARCHAR (25) NOT NULL
+);
+INSERT INTO Raca (raca) VALUES 
+('Branca'),
+('Preta'),
+('Parda'),
+('Amarela'),
+('Indígena'),
+('Ignorada');
+
+
+CREATE TABLE Escolaridade ( -- OK
+  IdEscolaridade INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  formacao varchar (30) NOT NULL
+);
+INSERT INTO Escolaridade (formacao)
+VALUES 
+    ('Analfabeto'),
+    ('1ª a 4ª série incompleta'),
+    ('4ª série completa'),
+    ('5ª à 8ª série incompleta'),
+    ('Ensino fundamental completo'),
+    ('Ensino médio incompleto'),
+    ('Ensino médio completo'),
+    ('Educação superior incompleta'),
+    ('Educação superior completa'),
+    ('Ignorado'),
+    ('Não se aplica');
+
+
+CREATE TABLE Endereco( -- OK
+  IdEndereco INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  rua VARCHAR(150) NULL,
+  bairro VARCHAR(100) NULL,
+  num_Res VARCHAR(4) NULL,
+  cep varchar (8) NOT NULL,
+  ponto_Ref VARCHAR(100) NULL,
+  comple varchar (30) NULL,
+  geo_camp_um varchar (25) NULL,
+  geo_camp_dois varchar (25) NULL,
+  IdMunicipio INT NOT NULL,
+  FOREIGN KEY (IdMunicipio) REFERENCES Municipio(IdMunicipio)
+);
+
 -- -----------------------------------------------------------EXECUTADO COM SUCESSO ------------------------------------------------------------------
 CREATE TABLE Paciente ( -- OK
   IdPaciente INT AUTO_INCREMENT PRIMARY KEY,
@@ -84,27 +161,14 @@ CREATE TABLE Paciente ( -- OK
   ocupacao VARCHAR(100),
   IdGenero INT NOT NULL,
   IdRaca INT NOT NULL,
-  IdGestante INT
-);
-
-
-CREATE TABLE Gestante( -- OK
-IdGestante INT AUTO_INCREMENT PRIMARY KEY,
-gestacao VARCHAR(30) NOT NULL
-);
-INSERT INTO Gestante (gestacao)
-    VALUES ('1º Trimestre'), ('2º Trimestre'), ('3º Trimestre'), ('Ignorado'), ('Não'), ('Não se aplica');
-
-CREATE TABLE Endereco( -- OK
-  IdEndereco INT AUTO_INCREMENT PRIMARY KEY,
-  rua VARCHAR(150) NULL,
-  bairro VARCHAR(100) NULL,
-  num_Res VARCHAR(4) NULL,
-  cep varchar (8) NOT NULL,
-  ponto_Ref VARCHAR(100) NULL,
-  comple varchar (30) NULL,
-  geo_camp_um varchar (25) NULL,
-  geo_camp_dois varchar (25) NULL
+  IdGestante INT NOT NULL,
+  IdEscolaridade INT NOT NULL,
+  IdEndereco INT NOT NULL,
+  FOREIGN KEY (IdGenero) REFERENCES Genero(IdGenero),
+  FOREIGN KEY (IdRaca) REFERENCES Raca(IdRaca),
+  FOREIGN KEY (IdGestante) REFERENCES Gestante(IdGestante),
+  FOREIGN KEY (IdEscolaridade) REFERENCES Escolaridade(IdEscolaridade),
+  FOREIGN KEY (IdEndereco) REFERENCES Endereco(IdEndereco)
 );
 
 CREATE TABLE UF ( -- OK
@@ -113,42 +177,8 @@ CREATE TABLE UF ( -- OK
 );
 INSERT INTO UF (sigla)
     VALUES ('SP');
-
-CREATE TABLE Municipio ( -- OK
-  IdMunicipio INT AUTO_INCREMENT PRIMARY KEY,
-  codigoIBGE INT,
-  cidade VARCHAR(50) NOT NULL
-);
-INSERT INTO Municipio (codigoIBGE, cidade)
-    VALUES
-    ( '3516408', 'Franco da Rocha'),
-    ('3509007','Caieiras'),
-    ('3516309','Francisco Morato'),
-    ('3528502','Mairiporã'),
-    ('3509205','Cajamar');
     
 -- drop table municipio;
-
-CREATE TABLE Genero ( -- OK
-  IdGenero INT AUTO_INCREMENT PRIMARY KEY,
-  sexo VARCHAR(15) NOT NULL
-);
- INSERT INTO Genero (sexo)
-    VALUES
-    ('Masculino'), ('Feminino');
-
-
-CREATE TABLE Raca (  -- OK
-  IdRaca INT AUTO_INCREMENT PRIMARY KEY,
-  raca VARCHAR (25) NOT NULL
-);
-INSERT INTO Raca (raca) VALUES 
-('Branca'),
-('Preta'),
-('Parda'),
-('Amarela'),
-('Indígena'),
-('Ignorada');
 
 CREATE TABLE Exame ( -- OK
   IdExame INT AUTO_INCREMENT PRIMARY KEY,
@@ -196,11 +226,8 @@ INSERT INTO Sorotipo (tipo) VALUES
 ('DENV3'),
 ('DENV4');
 
-
-
-
 CREATE TABLE DoencasPre_exist (  -- OK
-  IdDoenca INT AUTO_INCREMENT PRIMARY KEY,
+  IdDoencaPE INT AUTO_INCREMENT PRIMARY KEY,
   doenca_PreExistentes VARCHAR(50) NOT NULL
 );
 INSERT INTO DoencasPre_exist (Doenca_PreExistentes) VALUES 
@@ -212,24 +239,16 @@ INSERT INTO DoencasPre_exist (Doenca_PreExistentes) VALUES
 ('Doença renal crônica'),
 ('Doença ácido-péptica');
 
--- Tabela Escolaridade
-CREATE TABLE Escolaridade ( -- OK
-  IdEscolaridade INT AUTO_INCREMENT PRIMARY KEY,
-  formacao varchar (30) NOT NULL
+
+CREATE TABLE DPEPac (
+    CodDPEPac int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    IdPaciente int NOT NULL,
+    IdDoencaPE int NOT NULL,
+    FOREIGN KEY (IdPaciente) REFERENCES Paciente(IdPaciente),
+    FOREIGN KEY (IdDoencaPE) REFERENCES DoencasPre_exist(IdDoencaPE)
 );
-INSERT INTO Escolaridade (formacao)
-VALUES 
-    ('Analfabeto'),
-    ('1ª a 4ª série incompleta'),
-    ('4ª série completa'),
-    ('5ª à 8ª série incompleta'),
-    ('Ensino fundamental completo'),
-    ('Ensino médio incompleto'),
-    ('Ensino médio completo'),
-    ('Educação superior incompleta'),
-    ('Educação superior completa'),
-    ('Ignorado'),
-    ('Não se aplica');
+
+
 
 -- Tabela Agravo
 CREATE TABLE Conclusao ( -- OK
@@ -317,6 +336,8 @@ CREATE TABLE Consulta ( -- OK
   data_Investigacao DATE,
   observacoes TEXT
 );
+
+
 CREATE TABLE Doenca ( -- OK
 IdDoenca INT AUTO_INCREMENT PRIMARY KEY,
 doenca varchar (50) NOT NULL
@@ -324,10 +345,14 @@ doenca varchar (50) NOT NULL
 INSERT INTO Doenca (doenca) VALUES
 ('chikungunya'), ('Dengue');
 
+
 CREATE TABLE Sinais_Cli ( -- OK
-IdSinais INT AUTO_INCREMENT PRIMARY KEY,
-doenca varchar (50) NOT NULL
-); -- Sintomas que o paciente está tendo.
+  IdSinais INT AUTO_INCREMENT PRIMARY KEY,
+  doenca varchar (50) NOT NULL
+); 
+
+-- Sintomas que o paciente está tendo.
+
 INSERT INTO Sinais_Cli (doenca) VALUES 
 	('Febre'),
 	('Cefaleia'),
@@ -345,15 +370,19 @@ INSERT INTO Sinais_Cli (doenca) VALUES
 	('Dor retroorbital');
     
 CREATE TABLE Dengue_Grave(
-IdDengue INT AUTO_INCREMENT PRIMARY KEY,
-IdAlarme INT,
-data_sinais date,
-data_sinais_graves date
+  IdDengue INT AUTO_INCREMENT PRIMARY KEY,
+  IdGrave INT,
+  data_sinais date,
+  data_sinais_graves date
 );
+
+
 CREATE TABLE Dengue_Sinais(
 IdAlarme INT AUTO_INCREMENT PRIMARY KEY,
 sinais_alarme VARCHAR (50) NOT NULL
 );
+
+
 INSERT INTO Dengue_Sinais (sinais_alarme) VALUES
 ('Hipotensão postural e/ou lipotímia'),
 ('Queda abrupta de plaquetas'),
@@ -369,6 +398,8 @@ CREATE TABLE Dengue_Plasma(
 IdPlasma INT AUTO_INCREMENT PRIMARY KEY,
 sinais_graves VARCHAR (50) NOT NULL
 );
+
+
 INSERT INTO Dengue_Plasma (sinais_graves) VALUES
 ('Pulso débil ou indetectável'),
 ('PA convergente <= 20 mmHg'),
@@ -378,12 +409,15 @@ INSERT INTO Dengue_Plasma (sinais_graves) VALUES
 ('Extremidades frias'),
 ('Hipotensão arterial em fase tardia');
 
-CREATE TABLE Dengue_Sancramento(
-IdSacramento INT AUTO_INCREMENT PRIMARY KEY,
-sancramento VARCHAR (50) NULL
+
+CREATE TABLE Dengue_Sangramento(
+IdSang INT AUTO_INCREMENT PRIMARY KEY,
+TipoSangramento VARCHAR (50) NULL
 );
-INSERT INTO Dengue_Sancramento (sancramento) VALUES
-('Hematêmese '),
+
+
+INSERT INTO Dengue_Sangramento (TipoSangramento) VALUES
+('Hematêmese'),
 ('Melena'),
 ('Metrorragia volumosa'),
 ('Sangramento do SNC');
@@ -397,19 +431,18 @@ CREATE TABLE Zona (  -- OK
   IdZona INT AUTO_INCREMENT PRIMARY KEY,
   zona varchar(30) NULL
 );
+
+
  INSERT INTO Zona (zona)
     VALUES 
     ('Urbana'), ('Rural'), ('Periurbana'), ('Ignorado');
-    
-   
-    
-   
-    
-	
+
+
+
 
 -- Adicionando chaves estrangeiras no final
 
-ALTER TABLE Agravo
+/* ALTER TABLE Agravo
   ADD CONSTRAINT fk_Agravo_idConsulta FOREIGN KEY (Id_Consulta) REFERENCES Consulta(Id_ConsultaPK);
 
 ALTER TABLE Exame
@@ -464,5 +497,5 @@ ALTER TABLE Acesso
   ADD CONSTRAINT fk_Acesso_idUnidade FOREIGN KEY (idunidade) REFERENCES Municipio(Id_municipioPK);
 
 ALTER TABLE Consulta
-  ADD CONSTRAINT fk_Consulta_ID_UniSaude FOREIGN KEY (ID_UniSaude) REFERENCES Municipio(Id_municipioPK);
+  ADD CONSTRAINT fk_Consulta_ID_UniSaude FOREIGN KEY (ID_UniSaude) REFERENCES Municipio(Id_municipioPK); */
 

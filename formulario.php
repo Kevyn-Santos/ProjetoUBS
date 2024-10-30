@@ -15,6 +15,9 @@ $sqlEscolaridade = "SELECT * FROM escolaridade;";
 $stmtE = $pdo->query($sqlEscolaridade) or die("Falha na busca");
 $Escolaridade = $stmtE->fetchAll(PDO::FETCH_ASSOC);
 
+$sqlGestante = "SELECT * FROM gestante;";
+$stmtGE = $pdo->query($sqlGestante) or die("Falha na busca");
+$gestantes = $stmtGE->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -113,13 +116,11 @@ $Escolaridade = $stmtE->fetchAll(PDO::FETCH_ASSOC);
                     <div class="column">
                         <label for="gestante">12 - Gestante:</label>
                         <select id="gestante" name="gestante">
-                            <option value="1">1 - 1º Trimestre</option>
-                            <option value="2">2 - 2º Trimestre</option>
-                            <option value="3">3 - 3º Trimestre</option>
-                            <option value="4">4 - Idade gestacional Ignorada</option>
-                            <option value="5">5 - Não</option>
-                            <option value="6">6 - Não se aplica</option>
-                            <option value="9">9 - Ignorado</option>
+
+                            <?php foreach($gestantes as $gestante): ?>
+                                        <option value="<?= $gestante['IdGestante']?>"> <?= $gestante['gestacao']?> </option>
+                                <?php endforeach;?>
+
                         </select>
                     </div>
                     <div class="column">
@@ -137,18 +138,18 @@ $Escolaridade = $stmtE->fetchAll(PDO::FETCH_ASSOC);
                         <select id="escolaridade" name="escolaridade">
 
                         <?php foreach($Escolaridade as $formacao): ?>
-                                        <option value="<?= $formacao['idEscolaridade']?>"> <?= $formacao['formacao']?> </option>
+                                        <option value="<?= $formacao['IdEscolaridade']?>"> <?= $formacao['formacao']?> </option>
                             <?php endforeach;?>
 
                         </select>
                     </div>
                     <div class="column">
                         <label for="cartao-sus">15 - Número do Cartão SUS:</label>
-                        <input type="text" id="cartao-sus" name="cartao-sus">
+                        <input type="text" id="cartao-sus" name="cartao-sus" maxlength="15">
                     </div>
                     <div class="column">
                         <label for="CPF">15 - CPF:</label>
-                        <input type="text" id="CPF" name="CPF">
+                        <input type="text" id="CPF" name="CPF" maxlength="14">
                     </div>
                     <div class="column">
                         <label for="nome-mae">16 - Nome da mãe:</label>
@@ -270,13 +271,13 @@ $Escolaridade = $stmtE->fetchAll(PDO::FETCH_ASSOC);
                     </div>
                     <div class="column">
                         <label for="doencas">34 - Doenças pré-existentes:</label>   <br>
-                        <input type="checkbox" id="diabete" name="DoencasPreExistentes[]" value="Diabetes">Diabetes
-                        <input type="checkbox" id="hepatopatias" name="DoencasPreExistentes[]" value="Hepatopatias">Hepatopatias
-                        <input type="checkbox" id="hipertensao-arterial" name="DoencasPreExistentes[]" value="Hipertensão arterial">Hipertensão arterial
-                        <input type="checkbox" id="doenças-auto-imunes" name="DoencasPreExistentes[]" value="Doenças auto-imunes">Doenças auto-imunes  <br>
-                        <input type="checkbox" id="doencas-hematologicas" name="DoencasPreExistentes[]" value="Doenças hematológicas">Doenças hematológicas
-                        <input type="checkbox" id="doenca-renal-cronica" name="DoencasPreExistentes[]" value="Doença renal crônica">Doença renal crônica
-                        <input type="checkbox" id="doenca-acido-peptica" name="DoencasPreExistentes[]" value="Doença ácido-péptica">Doença ácido-péptica
+                        <input type="checkbox" id="diabete" name="DoencasPreExistentes[]" value="1">Diabetes
+                        <input type="checkbox" id="hepatopatias" name="DoencasPreExistentes[]" value="2">Hepatopatias
+                        <input type="checkbox" id="hipertensao-arterial" name="DoencasPreExistentes[]" value="3">Hipertensão arterial
+                        <input type="checkbox" id="doenças-auto-imunes" name="DoencasPreExistentes[]" value="4">Doenças auto-imunes  <br>
+                        <input type="checkbox" id="doencas-hematologicas" name="DoencasPreExistentes[]" value="5">Doenças hematológicas
+                        <input type="checkbox" id="doenca-renal-cronica" name="DoencasPreExistentes[]" value="6">Doença renal crônica
+                        <input type="checkbox" id="doenca-acido-peptica" name="DoencasPreExistentes[]" value="7">Doença ácido-péptica
                     </div>
                 </fieldset> 
                 <fieldset>   

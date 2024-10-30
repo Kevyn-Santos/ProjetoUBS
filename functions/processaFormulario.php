@@ -8,16 +8,16 @@ use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
 
 
-$logForm = new Logger('name');
+/* $logForm = new Logger('name');
 $logForm-> pushHandler(new StreamHandler('../logs/logForm.txt', level::Notice));
 
-$logForm->notice('foi preenchido um formulario: ', ['username' => $_SESSION['nome'], 'Level' => $_SESSION['nivelAcesso']]);
+$logForm->notice('foi preenchido um formulario: ', ['username' => $_SESSION['nome'], 'Level' => $_SESSION['nivelAcesso']]); */
 
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
     //dados gerais
 
-/*     $TipoNotificacao = $_POST['tipo-notificacao'];
+    /*     $TipoNotificacao = $_POST['tipo-notificacao'];
     $Agravo = $_POST['agravo'];
     $Cid10 = $_POST['codigo-cid10'];
     $DataNotificacao = $_POST['data-notificacao'];
@@ -26,7 +26,8 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     $codIbgeMunicipio = $_POST['codigo-ibge-MunicipioNotificacao'];
     $UnidadeSaude = $_POST['unidade-saude'];
     $CodUnidadeSaude = $_POST['codigo-unidade'];
-    $DataprimeiroSintomas = $_POST['data-primeiro-sintomas']; */
+    $DataprimeiroSintomas = $_POST['data-primeiro-sintomas']; 
+    $datainvestigacao = $_POST['data-investigacao'];*/
     
 
     //Notificação individual
@@ -51,26 +52,9 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     $nomeMae = $_POST['nome-mae'];
     $Ocupacao = $_POST['ocupacao']; 
 
-    try {
-        $stmt = $pdo->prepare('INSERT INTO paciente(nome, cartao_SUS, cpf, nome_Mae, data_nasc, idade, ocupacao, IdGenero, IdRaca) 
-        VALUES (:nome, :cartao_SUS, :cpf, :nome_Mae, :data_nasc, :idade, :ocupacao, :IdGenero, :IdRaca)');
-        $stmt->execute(['nome' => $nomePaciente, 'cartao_SUS' => $numeroCartaoSUS, 'cpf' => $CPF, 'nome_Mae' => $nomeMae, 'data_nasc' => $date, 'idade' => $Idade, 'ocupacao' => $Ocupacao, 'IdGenero' => $Sexo, 'IdRaca' => $Raca]);
-    
-        echo "
-                           
-                           <META HTTP-EQUIV=REFRESH CONTENT = '0;URL='index.php'>
-                           <script type=\"text/javascript\">
-                               alert(\"Formulario cadastrado com sucesso!\");
-                             </script>                           
-                        ";
+    //echo "$nomePaciente,  $date, $Idade, $Sexo, $Gestante, $Raca, $Escolaridade, $numeroCartaoSUS, $CPF, $nomeMae, $Ocupacao". '<br>';
 
-        header('location: ../formulario.php');
-
-    } catch (Exception $e) {
-        echo $e;
-    }
-    
-/*     //dados de residencia
+    //dados de residencia
     $CEP = $_POST['cep'];
     $UF = $_POST['uf-residencia'];
     $municipio = $_POST['municipio-residencia'];
@@ -83,12 +67,136 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     $distrito = $_POST['destrito'];
     $complemento = $_POST['complemento'];
     $DDD = $_POST['telefone'];
-    $geo1 = $_POST['geo1'];
+    $geo1 = $_POST['geo1']; 
     $geo2 = $_POST['geo2'];
-    
-    //dados investigador
+       
 
-    $datainvestigacao = $_POST['data-investigacao'];
+
+
+    
+    //crie um array com as doenças, insira elas no array, crie uma tabela internediaria que armazenará o id do paciente, as doenças que ele tem e o id de cada uma delas, adicione as doenças ao banco de dados a partir do array. Sendo assim, pode ser utilizado um select para as inserçoes(como no cadastro de usuarios), ou eu posso verificar cada doença no array, comparar com o banco, e se estiverem no bancom adicionar nesta tabela internediaria.
+
+
+    /* Estruturas de consulta e inserção */
+
+    //Consulta de municipio
+   if (isset($municipio) && !empty($municipio)) { //verifica se municipio esta preenchido
+        // Consulta SQL com depuração
+        $sqlMunicipio = "SELECT municipio.IdMunicipio, municipio.cidade, municipio.codigoIBGE FROM municipio LEFT JOIN endereco ON endereco.IdMunicipio = municipio.IdMunicipio WHERE municipio.cidade LIKE :MunicipioResidencia"; //seleciona o municipio a partir dos dados de endereço utilizando o left join
+                         
+        $stmtM = $pdo->prepare($sqlMunicipio); 
+    
+        // Adiciona curingas para busca parcial
+        $Municipio_Param = '%' . $municipio . '%'; // verifica uma aproximação do que esta digitado no campo municipio
+        $stmtM->bindParam(':MunicipioResidencia', $Municipio_Param, PDO::PARAM_STR); //passa todos os parametros anteriores
+    
+        // Exibe a consulta SQL e o parâmetro para depuração
+        //echo "Consulta SQL: $sqlMunicipio". "<br>";
+       //echo "Parâmetro de busca: $Municipio_Param". "<br>";
+
+    
+        // Executa a consulta
+        $stmtM->execute();
+    
+        // Verifica os resultados
+        if ($stmtM->rowCount() > 0) { //verifica se esta cidade passada no stmtM existe no banco de dados, e se existir, coloca ela na variavel IdMunicipio
+            while ($Cidades = $stmtM->fetch(PDO::FETCH_ASSOC)) {
+
+                    //echo "cidade encontrada: " . $Cidades['IdMunicipio']. " - " .$Cidades['cidade']. "<br>";
+
+                    $IdMunicipio = $Cidades['IdMunicipio'];
+
+
+            }
+        } else {
+            echo "Nenhum nome correspondente encontrado.";
+        }
+    } else {
+        echo "O campo de município está vazio.";
+    }
+
+
+    //preparação para a inserção de endereço
+    $sqlEndereco = "SELECT IdEndereco FROM endereco";
+        $stmtEndereco = $pdo->prepare($sqlEndereco);
+        $stmtEndereco->execute();
+        if ($stmtEndereco->rowCount() > 0) {
+            // Captura o primeiro IdEndereco
+            $row = $stmtEndereco->fetch(PDO::FETCH_ASSOC);
+            $IdEndereco = $row['IdEndereco'];
+            
+            // Exibe o ID encontrado
+            //echo "IdEndereco encontrado: " . $IdEndereco;
+        } else {
+           // echo "Nenhum IdEndereco encontrado.";
+        }
+
+
+        //Captura de Doenças pre-Existentes     
+        if(isset($_POST ['DoencasPreExistentes'])){
+            $DoencasPE = $_POST ['DoencasPreExistentes'];
+            
+        }
+
+        /* foreach($DoencasPE as $key){
+            echo $key.'<br>';
+        } */
+
+        //Try, inserção efetiva no banco
+
+    try {
+        
+        /* Inserção de endereço */
+        $stmtE = $pdo->prepare('INSERT INTO endereco(rua, bairro, num_Res, cep, ponto_Ref, comple, geo_camp_um, geo_camp_dois, IdMunicipio) 
+        VALUES (:rua, :bairro, :num_Res, :cep, :ponto_Ref, :comple, :geo_camp_um, :geo_camp_dois, :IdMunicipio)');
+
+        $stmtE->execute(['rua' =>$logradouro, 
+        'bairro' =>$bairro, 
+        'num_Res' =>$numero, 
+        'cep' =>$CEP, 
+        'ponto_Ref' =>$referencia, 
+        'comple' =>$complemento, 'geo_camp_um' =>$geo1, 'geo_camp_dois' =>$geo2, 
+        'IdMunicipio' =>$IdMunicipio]); // por fim, passa a variavel IdMunicipio como parametro para a inserção no banco
+
+        $IdEndereco = $pdo->lastInsertId(); 
+        //echo "Novo IdEndereco inserido: " . $IdEndereco;
+
+        /* Inserção do paciente */
+        $stmt = $pdo->prepare('INSERT INTO paciente(nome, cartao_SUS, cpf, nome_Mae, data_nasc, idade, ocupacao, IdGenero, IdRaca, IdGestante, IdEscolaridade, IdEndereco) 
+        VALUES (:nome, :cartao_SUS, :cpf, :nome_Mae, :data_nasc, :idade, :ocupacao, :IdGenero, :IdRaca, :IdGestante, :IdEscolaridade, :IdEndereco)');
+        $stmt->execute(['nome' => $nomePaciente, 'cartao_SUS' => $numeroCartaoSUS, 'cpf' => $CPF, 'nome_Mae' => $nomeMae, 'data_nasc' => $date, 'idade' => $Idade, 'ocupacao' => $Ocupacao, 'IdGenero' => $Sexo, 'IdRaca' => $Raca, 'IdGestante' => $Gestante, 'IdEscolaridade' => $Escolaridade, 'IdEndereco' => $IdEndereco]);
+        
+        $IdPaciente = $pdo->lastInsertId();
+
+        /* inserção das doenças pre existentes do paciente */
+        $sqlDPE = "INSERT INTO DPEPac (IdPaciente, IdDoencaPE) VALUES (:IdPaciente, :IdDoencaPE)";
+            $stmtDPE = $pdo->prepare($sqlDPE);
+    
+            foreach($DoencasPE as $doencas){
+                $stmtDPE->execute([
+                    'IdDoencaPE' => $doencas,
+                    'IdPaciente' => $IdPaciente
+                ]);
+            }
+
+        echo "
+                           
+                           <META HTTP-EQUIV=REFRESH CONTENT = '0;URL='index.php'>
+                           <script type=\"text/javascript\">
+                               alert(\"Formulario cadastrado com sucesso!\");
+                             </script>                           
+                        ";
+
+        header('location: ../formulario.php'); 
+
+    } catch (Exception $e) {
+        echo $e;
+    }
+    
+    
+
+    /*
+
 
 
 
@@ -105,15 +213,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     }
     
     
-    if(isset($_POST ['DoencasPreExistentes'])){
-        $DoençasPreExitentes = $_POST ['DoencasPreExistentes'];
-            echo '<br>'."Doenças pre existentes: ". '<br>';
-        foreach($DoençasPreExitentes as $key){
-            print $key. '<br>';
-        }
-    }else{
-        echo '<br>'."não houveram Doencas Pre Existentes";
-    }
+    
 
     //Atribuir values as checkbox, verificar se este valor esta setado, e se estiver, colocar no array respecitivo
 

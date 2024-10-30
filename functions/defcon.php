@@ -1,5 +1,5 @@
 <?php
-$dsn = 'mysql:host=localhost;projecttcc'; //endereco e  nome do banco de dados
+$dsn = 'mysql:host=localhost;dbname=projeto_tcc'; //endereco e  nome do banco de dados
 $username = 'root'; //usuario root por padrao
 $password = ''; // senha do banco
 
