@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+    <title>Notificação Individual</title>
+</head>
+<body>
+           <!-- Barra de navegação lateral -->
+           <div class="sidebar">
+            <ul>
+                <li><a href="dadosgerais.html">Dados Gerais</a></li>
+                <li><a href="notificacaoindividual.html">Notificação Individual</a></li>
+                <li><a href="dadosresidencia.html">Dados da Residência</a></li>
+                <li><a href="dadosclinicoselaboratoriais.html">Dados Clínicos e Laboratoriais</a></li>
+                <li><a href="hospitalizacao.html">Hospitalização</a></li>
+                <li><a href="conclusao.html">Conclusão</a></li>
+                <li><a href="preencheradicionais.html">Sinais Clinicos</a></li>
+                <li><a href="investigador.html">Investigador</a></li>
+                <!-- Adicione mais itens conforme necessário -->
+            </ul>
+        </div>
+    <!--Seta voltar -->
+        <div class="main-content">
+            <div class="back-arrow" onclick="voltarPagina()">
+                &#x2190;
+        </div>
+
+        <!--Conteudo principal-->
+    <div class="form-container">
+        <form action="">
+    <fieldset>
+        <legend>Notificação Individual</legend>
+        <div class="row">
+            <div class="column">
+                <label for="nome-paciente">8 - Nome do Paciente:</label>
+                <input type="text" id="nome-paciente" name="nome-paciente">
+            </div>
+            <div class="column">
+                <label for="data-nascimento">9 - Data de Nascimento:</label>
+                <input type="date" id="data-nascimento" name="data-nascimento   ">
+            </div>
+            <div class="column">
+                <label for="idade">10 - Idade:</label>
+                <input type="number" id="idade" name="idade">
+            </div>
+            <div class="column">
+                <label for="sexo">11 - Sexo:</label>
+                <select id="sexo" name="sexo">
+                    <option value="M">Masculino</option>
+                    <option value="F">Feminino</option>
+                    <option value="I">Ignorado</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="column">
+                <label for="gestante">12 - Gestante:</label>
+                <select id="gestante" name="gestante">
+                    <option value="1">1 - 1º Trimestre</option>
+                    <option value="2">2 - 2º Trimestre</option>
+                    <option value="3">3 - 3º Trimestre</option>
+                    <option value="4">4 - Idade gestacional Ignorada</option>
+                    <option value="5">5 - Não</option>
+                    <option value="6">6 - Não se aplica</option>
+                    <option value="9">9 - Ignorado</option>
+                </select>
+            </div>
+            <div class="column">
+                <label for="raca-cor">13 - Raça/Cor:</label>
+                <select id="raca-cor" name="raca-cor">
+                    <option value="1">Branca</option>
+                    <option value="2">Preta</option> 
+                    <option value="3">Amarela</option>
+                    <option value="4">Parda</option>
+                    <option value="5">Indígena</option>
+                    <option value="6">Ignorado</option>
+                </select>
+            </div>
+            <div class="column">
+                <label for="raca-cor">14 - Escolaridade:</label>
+                <select id="escolaridade" name="escolaridade">
+                    <option value="0">0 - Analfabeto</option>
+                    <option value="1">1 - 1ª a 4ª série incompleta do EF (antigo primário ou 1º grau)</option> 
+                    <option value="2">2 - 4ª série completa do EF (antigo primário ou 1º grau)</option>
+                    <option value="3">3 - 5ª à 8ª série incompleta do EF (antigo ginásio ou 1º grau)</option>
+                    <option value="4">4 - Ensino fundamental completo (antigo ginásio ou 1º grau)</option>
+                    <option value="5">5 - Ensino médio incompleto (antigo colegial ou 2º grau)</option>
+                    <option value="6">6 - Ensino médio completo (antigo colegial ou 2º grau)</option>
+                    <option value="7">7 - Educação superior incompleta</option>
+                    <option value="8">8 - Educação superior completa</option>
+                    <option value="9">Ignorado</option>
+                    <option value="10">Não se aplica</option>
+                </select>
+            </div>
+            <div class="column">
+                <label for="cartao-sus">15 - Número do Cartão SUS:</label>
+                <input type="text" id="cartao-sus" name="cartao-sus">
+            </div>
+            <div class="column">
+                <label for="nome-mae">16 - Nome da mãe:</label>
+                <input type="text" id="nome-mae" name="nome-mae">
+            </div>
+        </div>
+    </fieldset>
+    </form>
+    </div>
+    <!-- Botão Avançar -->
+<div class="next-button">
+    <button onclick="avancarPagina()">Avançar</button>
+</div>
+
+<script>
+    function voltarPagina() {
+        window.history.back();
+    }
+    
+    function avancarPagina() {
+        window.location.href = "dadosresidencia.html";
+    }
+</script>
+    <script>
+        function voltarPagina() {
+            window.history.back();
+        }
+    </script>
+</body>
+</html>

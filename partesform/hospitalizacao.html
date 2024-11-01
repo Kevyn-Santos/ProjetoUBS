@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+    <title>Hospitalização</title>
+</head>
+<body>
+           <!-- Barra de navegação lateral -->
+           <div class="sidebar">
+            <ul>
+                <li><a href="dadosgerais.html">Dados Gerais</a></li>
+                <li><a href="notificacaoindividual.html">Notificação Individual</a></li>
+                <li><a href="dadosresidencia.html">Dados da Residência</a></li>
+                <li><a href="dadosclinicoselaboratoriais.html">Dados Clínicos e Laboratoriais</a></li>
+                <li><a href="hospitalizacao.html">Hospitalização</a></li>
+                <li><a href="conclusao.html">Conclusão</a></li>
+                <li><a href="preencheradicionais.html">Sinais Clinicos</a></li>
+                <li><a href="investigador.html">Investigador</a></li>
+                <!-- Adicione mais itens conforme necessário -->
+            </ul>
+        </div>
+    <!--Seta voltar -->
+        <div class="main-content">
+            <div class="back-arrow" onclick="voltarPagina()">
+                &#x2190;
+        </div>
+
+        <!--Conteudo principal-->
+    <div class="form-container">
+        <form action="">
+    <fieldset>
+        <legend>Hospitalização</legend>
+        <div class="row">
+            <div class="column">
+                <label for="hospitalizacao">50 - Ocorreu Hospitalização?</label> <br>
+                <input type="radio" id="sim" name="opt1">Sim
+                <input type="radio" id="nao" name="opt1">Não
+                <input type="radio" id="ignorado" name="opt1">Ignorado
+            </div>
+            <div class="column">
+                <label for="data-internacao">51 - Data da Internação:</label>
+                <input type="date" id="data-internacao" name="data-internacao">
+            </div>
+            <div class="column">
+                <label for="uf-hospitalizacao">52 - UF:</label>
+                <input type="text" id="uf-hospitalizacao" name="uf-hospitalizacao">
+            </div>
+            <div class="column">
+                <label for="municipio-hospital">53 - Município do Hospital:</label>
+                <input type="text" id="municipio-hospital" name="municipio-hospital">
+                <label for="codigo-ibge">Codigo IBGE:</label>
+                <input type="text" id="codigo-ibge" name="codigo-ibge">
+            </div>
+            <div class="column">
+                <label for="nome-hospital">54 - Nome do Hospital:</label>
+                <input type="text" id="nome-hospital" name="nome-hospital">
+                <label for="codigo">Codigo:</label>
+                <input type="text" id="codigo" name="codigo">
+            </div>
+            <div class="column">
+                <label for="tel-hospital">55 - (DDD) Telefone:</label>
+                <input type="text" id="tel-hospital" name="tel-hospital">
+            </div>
+        </div>
+    </fieldset>
+    </form>
+    </div>
+    <!-- Botão Avançar -->
+<div class="next-button">
+    <button onclick="avancarPagina()">Avançar</button>
+</div>
+
+<script>
+    function voltarPagina() {
+        window.history.back();
+    }
+    
+    function avancarPagina() {
+        window.location.href = "conclusao.html";
+    }
+</script>
+    <script>
+        function voltarPagina() {
+            window.history.back();
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <title>Dados Gerais</title>
+</head>
+<body>
+         <!-- Barra de navegação lateral -->
+         <div class="sidebar">
+            <ul>
+                <li><a href="dadosgerais.html">Dados Gerais</a></li>
+                <li><a href="notificacaoindividual.html">Notificação Individual</a></li>
+                <li><a href="dadosresidencia.html">Dados da Residência</a></li>
+                <li><a href="dadosclinicoselaboratoriais.html">Dados Clínicos e Laboratoriais</a></li>
+                <li><a href="hospitalizacao.html">Hospitalização</a></li>
+                <li><a href="conclusao.html">Conclusão</a></li>
+                <li><a href="preencheradicionais.html">Sinais Clinicos</a></li>
+                <li><a href="investigador.html">Investigador</a></li>
+                <!-- Adicione mais itens conforme necessário -->
+            </ul>
+        </div>
+    <!--Seta voltar -->
+        <div class="main-content">
+            <div class="back-arrow" onclick="voltarPagina()">
+                &#x2190;
+        </div>
+
+        <!--Conteudo principal-->
+        <div class="form-container">
+            <form>
+                <fieldset>
+                    <legend>Dados Gerais</legend>
+                    <div class="row">
+                        <div class="column">
+                            <label for="tipo-notificacao">1 - Tipo de Notificação:</label>
+                            <select id="tipo-notificacao" name="tipo-notificacao">
+                                <option value="1">Individual</option>
+                            </select>
+                        </div>
+                        <div class="column">
+                            <label for="agravo">2 - Agravo/Doença:</label>
+                            <select id="agravo" name="agravo">
+                                <option value="1">Dengue</option>
+                                <option value="2">Chikungunya</option>
+                            </select>
+                            <label for="codigo-cid10">Código (CID10):</label>
+                            <input type="text" id="codigo-cid10" name="codigo-cid10">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="column">
+                            <label for="data-notificacao">3 - Data da Notificação:</label>
+                            <input type="date" id="data-notificacao" name="data-notificacao">
+                        </div>
+                        <div class="column">
+                            <label for="uf-estado">4 - UF:</label>
+                            <input type="text" id="uf-estado" name="uf-estado">
+                        </div>
+                        <div class="column">
+                            <label for="municipio-notificacao">5 - Município de Notificação:</label>
+                            <input type="text" id="municipio-notificacao" name="municipio-notificacao">
+                            <label for="codigo-ibge">Código IBGE:</label>
+                            <input type="text" id="codigo-ibge" name="codigo-ibge">
+                        </div>
+                        <div class="column">
+                            <label for="unidade-saude">6 - Unidade de Saúde (ou outra fonte notificadora):</label>
+                            <input type="text" id="unidade-saude" name="unidade-saude">
+                            <label for="codigo-unidade">Código:</label>
+                            <input type="text" id="codigo-unidade" name="codigo-unidade">
+                        </div>
+                        <div class="column">
+                            <label for="data-primeiro-sintomas">7 - Data dos Primeiros Sintomas:</label>
+                            <input type="date" id="data-primeiro-sintomas" name="data-primeiro-sintomas">
+                        </div>
+                    </div>
+                </fieldset>
+               
+            </form>
+        </div>
+    </div>
+<!-- Botão Avançar -->
+<div class="next-button">
+    <button onclick="avancarPagina()">Avançar</button>
+</div>
+
+<script>
+    function voltarPagina() {
+        window.history.back();
+    }
+    
+    function avancarPagina() {
+        window.location.href = "notificacaoindividual.html";
+    }
+</script>
+    <!--Volatar pagina-->
+    <script>
+        function voltarPagina() {
+            window.history.back();
+        }
+    </script>
+</body>
+</html>
