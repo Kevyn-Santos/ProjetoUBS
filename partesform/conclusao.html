@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+    <title>Conclusão</title>
+</head>
+<body>
+            <!-- Barra de navegação lateral -->
+            <div class="sidebar">
+                <ul>
+                    <li><a href="dadosgerais.html">Dados Gerais</a></li>
+                    <li><a href="notificacaoindividual.html">Notificação Individual</a></li>
+                    <li><a href="dadosresidencia.html">Dados da Residência</a></li>
+                    <li><a href="dadosclinicoselaboratoriais.html">Dados Clínicos e Laboratoriais</a></li>
+                    <li><a href="hospitalizacao.html">Hospitalização</a></li>
+                    <li><a href="conclusao.html">Conclusão</a></li>
+                    <li><a href="preencheradicionais.html">Sinais Clinicos</a></li>
+                    <li><a href="investigador.html">Investigador</a></li>
+                    <!-- Adicione mais itens conforme necessário -->
+                </ul>
+            </div>
+        <!--Seta voltar -->
+            <div class="main-content">
+                <div class="back-arrow" onclick="voltarPagina()">
+                    &#x2190;
+            </div>
+    
+            <!--Conteudo principal-->
+    <div class="form-container">
+        <form action="">
+    <fieldset>
+        <legend>Conclusão</legend>  
+        <h4>Local Provável de Infecção (no período de 15 dias)</h4>
+        <div class="column">
+            <label for="hospitalizacao">56 - O caso é autóctone do município de residência?</label> <br>
+            <input type="radio" id="sim" name="opt2">Sim
+            <input type="radio" id="nao" name="opt2">Não
+            <input type="radio" id="ignorado" name="opt2">Ignorado
+        </div>
+        <div class="column">
+            <label for="uf">57 - UF:</label>
+            <input type="text" id="uf" name="uf">
+        </div>
+        <div class="column">
+            <label for="pais">58 - País:</label>
+            <input type="text" id="pais" name="pais">
+        </div>
+        <div class="column">
+            <label for="municipio-local">59 - Município:</label>
+            <input type="text" id="municipio-local" name="municipio-local">
+            <label for="codigo-ibge">Codigo IBGE:</label>
+            <input type="text" id="codigo-ibge" name="codigo-ibge">
+        </div>
+        <div class="column">
+            <label for="distrito">60 - Distrito:</label>
+            <input type="text" id="distrito" name="distrito">
+        </div>
+        <div class="column">
+            <label for="bairro">61 - Bairro:</label>
+            <input type="text" id="bairro" name="bairro">
+        </div>
+        <div class="column">
+            <label for="classificacao">62 - Classificação:</label> <br>
+            <input type="radio" id="descartado" name="opt3">Descartado
+            <input type="radio" id="dengue" name="opt3">Dengue
+            <input type="radio" id="dengue-sinais" name="opt3">Dengue com Sinais de Alarme
+            <input type="radio" id="dengue-grave" name="opt3">Dengue Grave
+            <input type="radio" id="chikungunya" name="opt3">Chikungunya
+        </div>
+        <div class="column">
+            <label for="classificacao">63 - Critério de Confirmação/Descarte:</label> <br>
+            <input type="radio" id="laboratorio" name="opt4">Laboratório
+            <input type="radio" id="clinico" name="opt4">Clínico Epidemiológico
+            <input type="radio" id="investigacao" name="opt4">Em investigação
+        </div>
+        <div class="column">
+            <label for="apres-clinica">64 - Apresentação clínica:</label> <br>
+            <input type="radio" id="aguda" name="opt5">Aguda
+            <input type="radio" id="cronica" name="opt5">Crônica
+        </div>
+        <div class="column">
+            <label for="classificacao">65 - Evolução do Caso:</label> <br>
+            <input type="radio" id="cura" name="opt6">Cura
+            <input type="radio" id="obito-agravo" name="opt6">Óbito pelo agravo
+            <input type="radio" id="obito-causas" name="opt6">Óbito por outras causas
+            <input type="radio" id="obito-inv" name="opt6">Óbito em investigação
+            <input type="radio" id="ignorado" name="opt6">Ignorado
+        </div>
+        <div class="column">
+            <label for="data-obito">66 - Data do Óbito:</label>
+            <input type="date" id="data-obito" name="data-obito">
+        </div>
+        <div class="column">
+            <label for="data-encerramento">67 - Data do Encerramento:</label>
+            <input type="date" id="data-encerramento" name="data-encerramento">
+        </div>
+    </fieldset>
+</form>
+    </div>
+    <!-- Botão Avançar -->
+<div class="next-button">
+    <button onclick="avancarPagina()">Avançar</button>
+</div>
+
+<script>
+    function voltarPagina() {
+        window.history.back();
+    }
+    
+    function avancarPagina() {
+        window.location.href = "preencheradicionais.html";
+    }
+</script>
+    <script>
+        function voltarPagina() {
+            window.history.back();
+        }
+    </script>
+</body>
+</html>

@@ -276,10 +276,6 @@ INSERT INTO Dengue_Sangramento (TipoSangramento) VALUES
 ('Metrorragia volumosa'),
 ('Sangramento do SNC');
 
---Tabelas intermediarias
-
-
-
 -- ----------------------------------------------------------- EXECUTADO COM SUCESSO ------------------------------------------------------------------
 CREATE TABLE Paciente ( -- OK
   IdPaciente INT AUTO_INCREMENT PRIMARY KEY,
@@ -467,68 +463,3 @@ CREATE TABLE Consulta ( -- OK
   data_Investigacao DATE,
   observacoes TEXT
 );
-
-
-
-
-
-
--- Adicionando chaves estrangeiras no final
-
-/* ALTER TABLE Agravo
-  ADD CONSTRAINT fk_Agravo_idConsulta FOREIGN KEY (Id_Consulta) REFERENCES Consulta(Id_ConsultaPK);
-
-ALTER TABLE Exame
-  ADD CONSTRAINT fk_Exame_idConsulta FOREIGN KEY (Id_Consulta) REFERENCES Consulta(Id_ConsultaPK);
-
-ALTER TABLE DoencasPre_exist
-  ADD CONSTRAINT fk_DoencasPre_idPaciente FOREIGN KEY (Id_Paciente) REFERENCES Paciente(Id_PacientePK);
-
- -- ALTER TABLE Escolaridade
-  -- ADD CONSTRAINT fk_Escolaridade_idPaciente FOREIGN KEY (Id_Paciente) REFERENCES Paciente(Id_PacientePK); Nessa etapa foi alterada para ter ligação com outra tabelas 
-
-ALTER TABLE Hospitalizacao
-  ADD CONSTRAINT fk_Hospitalizacao_idConsulta FOREIGN KEY (id_consulta) REFERENCES Consulta(Id_ConsultaPK);
-
-ALTER TABLE Consulta
-  ADD CONSTRAINT fk_Consulta_idPaciente FOREIGN KEY (Id_Paciente) REFERENCES Paciente(Id_PacientePK);
-
-
-
-ALTER TABLE Consulta
-  ADD CONSTRAINT fk_Consulta_Id_UF FOREIGN KEY (Id_UF) REFERENCES UF(Id_UF);
-
-ALTER TABLE Consulta
-  ADD CONSTRAINT fk_Consulta_Id_municipio FOREIGN KEY (Id_municipio) REFERENCES Municipio(Id_municipioPK);
-
-ALTER TABLE Consulta
-  ADD CONSTRAINT fk_Consulta_Id_Hosp FOREIGN KEY (Id_Hosp) REFERENCES Hospitalizacao(Id_HospitalPK);
-
-ALTER TABLE Zona
-  ADD CONSTRAINT fk_Zona_idPaciente FOREIGN KEY (Id_Paciente) REFERENCES Paciente(Id_PacientePK);
-
-ALTER TABLE Genero
-  ADD CONSTRAINT fk_Genero_idPaciente FOREIGN KEY (Id_Paciente) REFERENCES Paciente(Id_PacientePK);
-
-ALTER TABLE Raca
-  ADD CONSTRAINT fk_Raca_idPaciente FOREIGN KEY (Id_Paciente) REFERENCES Paciente(Id_PacientePK);
-  
-ALTER TABLE Enfermeiro
-  ADD CONSTRAINT fk_Enfermeiro_idFuncao FOREIGN KEY (id_Funcao) REFERENCES Funcoes(id_Funcao);
-  
-  ALTER TABLE Consulta
-  ADD CONSTRAINT fk_Consulta_idEnfermeiro FOREIGN KEY (Id_Enfermeiro) REFERENCES Enfermeiro(Id_Enfermeiro);
-  
-
-ALTER TABLE Acesso
-  ADD CONSTRAINT fk_Acesso_idEnfermeiro FOREIGN KEY (idenfermeiro) REFERENCES Enfermeiro(Id_Enfermeiro);
-  
-  ALTER TABLE Local_infeccao
-  ADD CONSTRAINT fk_LocalInfeccao_idConsulta FOREIGN KEY (idConsulta) REFERENCES Consulta(Id_ConsultaPK);
-
-ALTER TABLE Acesso
-  ADD CONSTRAINT fk_Acesso_idUnidade FOREIGN KEY (idunidade) REFERENCES Municipio(Id_municipioPK);
-
-ALTER TABLE Consulta
-  ADD CONSTRAINT fk_Consulta_ID_UniSaude FOREIGN KEY (ID_UniSaude) REFERENCES Municipio(Id_municipioPK); */
-

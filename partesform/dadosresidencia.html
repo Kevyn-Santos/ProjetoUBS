@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+    <title>Document</title>
+</head>
+<body>
+           <!-- Barra de navegação lateral -->
+           <div class="sidebar">
+            <ul>
+                <li><a href="dadosgerais.html">Dados Gerais</a></li>
+                <li><a href="notificacaoindividual.html">Notificação Individual</a></li>
+                <li><a href="dadosresidencia.html">Dados da Residência</a></li>
+                <li><a href="dadosclinicoselaboratoriais.html">Dados Clínicos e Laboratoriais</a></li>
+                <li><a href="hospitalizacao.html">Hospitalização</a></li>
+                <li><a href="conclusao.html">Conclusão</a></li>
+                <li><a href="preencheradicionais.html">Sinais Clinicos</a></li>
+                <li><a href="investigador.html">Investigador</a></li>
+                <!-- Adicione mais itens conforme necessário -->
+            </ul>
+        </div>
+    <!--Seta voltar -->
+        <div class="main-content">
+            <div class="back-arrow" onclick="voltarPagina()">
+                &#x2190;
+        </div>
+
+        <!--Conteudo principal-->
+    <div class="form-container">
+        <form action="">
+    <fieldset>
+        <legend>Dados de Residência</legend>
+        <div class="row">
+            <div class="column">
+                <label for="uf-residencia">17 - UF:</label>
+                <input type="text" id="uf-residencia" name="uf-residencia">
+            </div>
+            <div class="column">
+                <label for="municipio-residencia">18 - Município de Residência:</label>
+                <input type="text" id="municipio-residencia" name="municipio-residencia">
+                <label for="codigo-ibge-residencia">Codigo IBGE:</label>
+                <input type="text" id="codigo-ibge-residencia" name="codigo-ibge-residencia">
+            </div>
+            <div class="column">
+                <label for="bairro">19 - Destrito:</label>
+                <input type="text" id="destrito" name="destrito">
+            </div>
+            <div class="column">
+                <label for="bairro">20 - Bairro:</label>
+                <input type="text" id="bairro" name="bairro">
+            </div>
+            <div class="column">
+                <label for="logradouro">21 - Logradouro (rua, avenida,...):</label>
+                <input type="text" id="logradouro" name="logradouro">
+                <label for="codigo-residencia">Codigo:</label>
+                <input type="text" id="codigo-residencia" name="codigo-residencia">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="column">
+                <label for="numero">22 - Número:</label>
+                <input type="text" id="numero" name="numero">
+            </div>
+            <div class="column">
+                <label for="complemento">23 - Complemento (apto., casa, ...):</label>
+                <input type="text" id="logradouro" name="logradouro">
+            </div>
+            <div class="column">
+                <label for="geo1">24 - Geo campo 1:</label>
+                <input type="text" id="geo1" name="geo1">
+            </div>
+            <div class="column">
+                <label for="geo2">25 - Geo campo 2:</label>
+                <input type="text" id="geo2" name="geo2">
+            </div>
+            <div class="column">
+                <label for="ponto-referencia">26 - Ponto de Referência:</label>
+                <input type="text" id="ponto-referencia" name="ponto-referencia">
+            </div>
+            <div class="column">
+                <label for="cep">27 - CEP:</label>
+                <input type="text" id="cep" name="cep">
+            </div>
+            <div class="column">
+                <label for="telefone">28 - (DDD) Telefone:</label>
+                <input type="text" id="telefone" name="telefone">
+            </div>
+            <div class="column">
+                <label for="zona">29 - Zona:</label>
+                <select id="zona" name="zona">
+                    <option value="1">Urbana</option>
+                    <option value="2">Rural</option> 
+                    <option value="3">Periurbana</option>
+                    <option value="4">Ignorado</option>
+                </select>
+            </div>
+            <div class="column">
+                <label for="pais-fora">30 - País (se residente fora do Brasil):</label>
+                <input type="text" id="pais-fora" name="pais-fora">
+            </div>
+        </div>
+    </fieldset>
+    </form>
+    </div>
+    <!-- Botão Avançar -->
+<div class="next-button">
+    <button onclick="avancarPagina()">Avançar</button>
+</div>
+
+<script>
+    function voltarPagina() {
+        window.history.back();
+    }
+    
+    function avancarPagina() {
+        window.location.href = "dadosclinicoselaboratoriais.html";
+    }
+</script>
+    <script>
+        function voltarPagina() {
+            window.history.back();
+        }
+    </script>
+</body>
+</html>

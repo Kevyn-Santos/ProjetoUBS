@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+    <title>Investigador</title>
+</head>
+<body>
+           <!-- Barra de navegação lateral -->
+           <div class="sidebar">
+            <ul>
+                <li><a href="dadosgerais.html">Dados Gerais</a></li>
+                <li><a href="notificacaoindividual.html">Notificação Individual</a></li>
+                <li><a href="dadosresidencia.html">Dados da Residência</a></li>
+                <li><a href="dadosclinicoselaboratoriais.html">Dados Clínicos e Laboratoriais</a></li>
+                <li><a href="hospitalizacao.html">Hospitalização</a></li>
+                <li><a href="conclusao.html">Conclusão</a></li>
+                <li><a href="preencheradicionais.html">Sinais Clinicos</a></li>
+                <li><a href="investigador.html">Investigador</a></li>
+                <!-- Adicione mais itens conforme necessário -->
+            </ul>
+        </div>
+    <!--Seta voltar -->
+        <div class="main-content">
+            <div class="back-arrow" onclick="voltarPagina()">
+                &#x2190;
+        </div>
+
+        <!--Conteudo principal-->
+    <div class="form-container">
+        <form action="">
+    <fieldset>
+        <legend>Investigador</legend>
+        <div class="column">
+            <label for="unidade">Município/Unidade de Saúde:</label>
+            <input type="text" id="unidade" name="unidade">
+        </div>
+        <div class="column">
+            <label for="cod-unidade">Cód. da Unid. de Saúde:</label>
+            <input type="text" id="cod-unidade" name="cod-unidade">
+        </div>
+        <div class="column">
+            <label for="nome-inv">Nome:</label>
+            <input type="text" id="nome-inv" name="nome-inv">
+        </div>
+        <div class="column">
+            <label for="funcao">Função:</label>
+            <input type="text" id="funcao" name="funcao">
+        </div>
+    </fieldset>
+
+    <button type="submit">Enviar</button>
+  </div>
+</form>
+</div>
+  <script>
+    function voltarPagina() {
+        window.history.back();
+    }
+</script>
+</body>
+</html>

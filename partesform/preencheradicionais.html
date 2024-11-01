@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+    <title>Preenchimento Adicional</title>
+</head>
+<body>
+           <!-- Barra de navegação lateral -->
+           <div class="sidebar">
+            <ul>
+                <li><a href="dadosgerais.html">Dados Gerais</a></li>
+                <li><a href="notificacaoindividual.html">Notificação Individual</a></li>
+                <li><a href="dadosresidencia.html">Dados da Residência</a></li>
+                <li><a href="dadosclinicoselaboratoriais.html">Dados Clínicos e Laboratoriais</a></li>
+                <li><a href="hospitalizacao.html">Hospitalização</a></li>
+                <li><a href="conclusao.html">Conclusão</a></li>
+                <li><a href="preencheradicionais.html">Sinais Clinicos</a></li>
+                <li><a href="investigador.html">Investigador</a></li>
+                <!-- Adicione mais itens conforme necessário -->
+            </ul>
+        </div>
+    <!--Seta voltar -->
+        <div class="main-content">
+            <div class="back-arrow" onclick="voltarPagina()">
+                &#x2190;
+        </div>
+
+        <!--Conteudo principal-->
+    <div class="form-container">
+        <form action="">
+            <fieldset>
+                <legend>Preencher os sinais clínicos para Dengue com Sinais de Alarme e Dengue Grave</legend>
+                <fieldset>
+                    <legend>Dados Clínicos - Dengue com Sinais de Alarme e Dengue Grave</legend>
+                    <div class="column">
+                        <label for="sinais">68 - Dengue com sinais de alarme:</label>   <br>
+                        <input type="checkbox" id="hipotencao" name="sinaisAlarme[]">Hipotensão postural e/ou lipotímia
+                        <input type="checkbox" id="queda-abrupta" name="sinaisAlarme[]">Queda abrupta de plaquetas
+                        <input type="checkbox" id="vomitos" name="sinaisAlarme[]">Vômitos persistentes  
+                        <input type="checkbox" id="dor-abdominal" name="sinaisAlarme[]">Dor abdominal intensa e contínua
+                        <input type="checkbox" id="letargia" name="sinaisAlarme[]">Letargia ou irritabilidade <br>
+                        <input type="checkbox" id="sangramento-mucosa" name="sinaisAlarme[]">Sangramento de mucosa/outras hemorragias
+                        <input type="checkbox" id="aum-progressivo" name="sinaisAlarme[]">Aumento progressivo do hematócrito
+                        <input type="checkbox" id="hepatomegalia" name="sinaisAlarme[]">Hepatomegalia >= 2cm
+                        <input type="checkbox" id="acumulo-liq" name="sinaisAlarme[]">Acúmulo de líquidos
+                    </div>
+                    <div class="column">
+                        <label for="data-inicio-sinais">69 - Data de início dos sinais de alarme:</label>
+                        <input type="date" id="data-inicio-sinais" name="data-inicio-sinais">
+                    </div>
+                    <div class="column">
+                        <br>
+                        <label for="dengue-grave">70 - Dengue Grave:</label>   <br>
+                        <h4>Extravasamento grave de plasma</h4>
+                        <input type="checkbox" id="pulso" name="extravasamentoGrave[]">Pulso débil ou indetectável
+                        <input type="checkbox" id="convergente" name="extravasamentoGrave[]">PA convergente <= 20 mmHg
+                        <input type="checkbox" id="capilar" name="extravasamentoGrave[]">Tempo de enchimento capilar 
+                        <input type="checkbox" id="insuficiencia" name="extravasamentoGrave[]">Acúmulo de líquidos com insuficiência respiratória
+                        <input type="checkbox" id="taquicardia" name="extravasamentoGrave[]">Taquicardia <br>
+                        <input type="checkbox" id="extremidades" name="extravasamentoGrave[]">Extremidades frias
+                        <input type="checkbox" id="hipotensao" name="extravasamentoGrave[]">Hipotensão arterial em fase tardia
+                    </div>
+                    <div class="column">
+                        <br>
+                        <h4>Sangramento grave</h4>
+                        <input type="checkbox" id="hematemese" name="sangramentoGrave[]">Hematêmese
+                        <input type="checkbox" id="melena" name="sangramentoGrave[]">Melena
+                        <input type="checkbox" id="volumosa" name="sangramentoGrave[]">Metrorragia volumosa
+                        <input type="checkbox" id="sangramento-snc" name="sangramentoGrave[]">Sangramento do SNC
+                    </div>
+                    <div class="column">
+                        <br>
+                        <h4>Comprometimento grave de órgãos</h4>
+                        <input type="checkbox" id="ast" name="comprometimentoOrgaos[]">AST/ALT > 1.000
+                        <input type="checkbox" id="miocardite" name="comprometimentoOrgaos[]">Miocardite
+                        <input type="checkbox" id="conciencia" name="comprometimentoOrgaos[]">Alteração da consciência
+                        <input type="checkbox" id="outros-orgaos" name="comprometimentoOrgaos[]">Outros órgãos, especificar
+                        <input type="text" id="outros-orgaos-text" name="outros-orgaos-text">
+                    </div>
+                    <div class="column">
+                        <br>
+                        <label for="data-inicio-gravidade">71 - Data de início dos sinais de gravidade:</label>
+                        <input type="date" id="data-inicio-gravidade" name="data-inicio-gravidade">
+                    </div>
+                </fieldset>
+            </fieldset>
+
+            <fieldset>
+                <legend>Informações complementares e observações</legend>
+                <div class="row">
+                    <div class="column">
+                        <label for="observacoes">Observações Adicionais:</label>
+                        <textarea id="observacoes" name="observacoes"></textarea>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+    <!-- Botão Avançar -->
+<div class="next-button">
+    <button onclick="avancarPagina()">Avançar</button>
+</div>
+
+<script>
+    function voltarPagina() {
+        window.history.back();
+    }
+    
+    function avancarPagina() {
+        window.location.href = "investigador.html";
+    }
+</script>
+    <script>
+        function voltarPagina() {
+            window.history.back();
+        }
+    </script>
+</body>
+</html>

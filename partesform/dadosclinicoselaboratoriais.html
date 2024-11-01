@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+    <title>Dados Clinicos e Laboratoriais</title>
+</head>
+<body>
+        <!-- Barra de navegação lateral -->
+        <div class="sidebar">
+            <ul>
+                <li><a href="dadosgerais.html">Dados Gerais</a></li>
+                <li><a href="notificacaoindividual.html">Notificação Individual</a></li>
+                <li><a href="dadosresidencia.html">Dados da Residência</a></li>
+                <li><a href="dadosclinicoselaboratoriais.html">Dados Clínicos e Laboratoriais</a></li>
+                <li><a href="hospitalizacao.html">Hospitalização</a></li>
+                <li><a href="conclusao.html">Conclusão</a></li>
+                <li><a href="preencheradicionais.html">Sinais Clinicos</a></li>
+                <li><a href="investigador.html">Investigador</a></li>
+                <!-- Adicione mais itens conforme necessário -->
+            </ul>
+        </div>
+    <!--Seta voltar -->
+        <div class="main-content">
+            <div class="back-arrow" onclick="voltarPagina()">
+                &#x2190;
+        </div>
+
+        <!--Conteudo principal-->
+    <div class="form-container">
+        <form action="">
+    <fieldset>
+        <legend>Dados Clínicos e Laboratoriais</legend>
+        <fieldset>
+            <legend>Investigador</legend>
+            <div class="column">
+                <label for="data-investigacao">31 - Data da investigação:</label>
+                <input type="date" id="data-nascimento" name="data-nascimento">
+            </div>
+            <div class="column">
+                <label for="ocupacao">32 - Ocupação:</label>
+                <input type="text" id="ocupacao" name="ocupacao">
+            </div>
+        </fieldset>
+        
+        <fieldset>
+            <legend>Dados Clinicos</legend>
+        <div class="row">
+            <div class="column">
+                <label for="sintomas">33 - Sinais clínicos:</label><br>
+                <input type="checkbox" id="febre" name="febre">Febre
+                <input type="checkbox" id="cefaleia" name="cefaleia">Cefaleia
+                <input type="checkbox" id="vomito" name="vomito">Vômito
+                <input type="checkbox" id="dor-nas-costas" name="dor-nas-costas">Dor nas costas
+                <input type="checkbox" id="artrite" name="artrite">Artrite
+                <input type="checkbox" id="petequias" name="petequias">Petéquias
+                <input type="checkbox" id="prova-do-laco-positiva" name="prova-do-laco-positiva">Prova do laço positiva
+                <input type="checkbox" id="mialgia" name="mialgia">Mialgia  <br>
+                <input type="checkbox" id="exantema" name="exantema">Exantema
+                <input type="checkbox" id="nauseas" name="nauseas">Náuseas
+                <input type="checkbox" id="conjutivite" name="conjutivite">Conjutivite
+                <input type="checkbox" id="artralgia-intensa" name="artralgia-intensa">Artralgia intensa
+                <input type="checkbox" id="leucopenia" name="leucopenia">Leucopenia
+                <input type="checkbox" id="dor-retroorbital" name="dor-retroorbital">Dor retroorbital
+            </div>
+            <div class="column">
+                <label for="doencas">34 - Doenças pré-existentes:</label>   <br>
+                <input type="checkbox" id="diabete" name="diabete">Diabetes
+                <input type="checkbox" id="hepatopatias" name="hepatopatias">Hepatopatias
+                <input type="checkbox" id="hipertensao-arterial" name="hipertensao-arterial">Hipertensão arterial
+                <input type="checkbox" id="doenças-auto-imunes" name="doencas-auto-imunes">Doenças auto-imunes  <br>
+                <input type="checkbox" id="doencas-hematologicas" name="doencas-hematologicas">Doenças hematológicas
+                <input type="checkbox" id="doenca-renal-cronica" name="doenca-renal-cronica">Doença renal crônica
+                <input type="checkbox" id="doenca-acido-peptica" name="doenca-acido-peptica">Doença ácido-péptica
+            </div>
+        </fieldset> 
+        <fieldset>   
+            <legend>Dados laboratoriais</legend>
+            <h4>Sorologia (IgM) Chikungunya</h4>
+            <div class="column">
+                <label for="data-coleta">35 - Data da Coleta da 1ª Amostra(S1):</label>
+                <input type="date" id="data-coleta-s1" name="data-coleta-s1">
+            </div>
+            <div class="column">
+                <label for="data-coleta">36 - Data da Coleta da 2ª Amostra(S2):</label>
+                <input type="date" id="data-coleta-s2" name="data-coleta-s2">
+            </div>
+            <h4>Exame PRNT</h4>
+            <div class="column">
+                <label for="data-coleta">37 - Data da Coleta:</label>
+                <input type="date" id="data-coleta" name="data-coleta">
+            </div>
+            <div>
+            <label for="resultado">38 - Resultado:</label>   <br>
+                <input type="radio" id="febre" name="febre">S1
+                <input type="radio" id="febre" name="febre">S2
+                <input type="radio" id="febre" name="febre">PRNT
+            </div>
+
+            <h4>Sorologia (IgM) Dengue</h4>
+            <div class="column">
+                <label for="data-coleta">39 - Data da Coleta:</label>
+                <input type="date" id="data-coleta" name="data-coleta">
+            </div>
+            <div class="column">
+                <label for="resultado">40 - Resultado</label>
+                <select id="resultado" name="resultado">
+                    <option value="1">Positivo</option>
+                    <option value="2">Negativo</option> 
+                    <option value="3">Inconclusivo</option>
+                    <option value="4">Não realizado</option>
+                </select>
+            </div>
+            <h4>Exame NS1</h4>
+            <div class="column">
+                <label for="data-coleta">41 - Data da Coleta:</label>
+                <input type="date" id="data-coleta" name="data-coleta">
+            </div>
+            <div class="column">
+                <label for="resultado">42 - Resultado</label>
+                <select id="resultado" name="resultado">
+                    <option value="1">Positivo</option>
+                    <option value="2">Negativo</option> 
+                    <option value="3">Inconclusivo</option>
+                    <option value="4">Não realizado</option>
+                </select>
+            </div>
+            <h4>Isolamento</h4>
+            <div class="column">
+                <label for="data-coleta">43 - Data da Coleta:</label>
+                <input type="date" id="data-coleta" name="data-coleta">
+            </div>
+            <div class="column">
+                <label for="resultado">44 - Resultado</label>
+                <select id="resultado" name="resultado">
+                    <option value="1">Positivo</option>
+                    <option value="2">Negativo</option> 
+                    <option value="3">Inconclusivo</option>
+                    <option value="4">Não realizado</option>
+                </select>
+            </div>
+            <h4>RT-PCR</h4>
+            <div class="column">
+                <label for="data-coleta">45 - Data da Coleta:</label>
+                <input type="date" id="data-coleta" name="data-coleta">
+            </div>
+            <div class="column">
+                <label for="resultado">46 - Resultado</label>
+                <select id="resultado" name="resultado">
+                    <option value="1">Positivo</option>
+                    <option value="2">Negativo</option> 
+                    <option value="3">Inconclusivo</option>
+                    <option value="4">Não realizado</option>
+                </select>
+            </div>
+            <div class="column">
+                <br>
+                <label for="sorotipo">47 - Sorotipo</label>
+                <select id="sorotipo" name="sorotipo">
+                    <option value="1">DENV1</option>
+                    <option value="2">DENV2</option> 
+                    <option value="3">DENV3</option>
+                    <option value="4">DENV4</option>
+                </select>
+            </div>
+            <div class="column">
+                <br>
+                <label for="histopatologia">48 - Histopatologia</label>
+                <select id="histopatologia" name="histopatologia">
+                    <option value="1">Compativel</option>
+                    <option value="2">Incompativel</option> 
+                    <option value="3">Inconclusivo</option>
+                    <option value="4">Não realizado</option>
+                </select>
+            </div>
+            <div class="column">
+                <br>
+                <label for="imunohistoquimica">49 - Imunohistoquímica</label>
+                <select id="imunohistoquimica" name="imunohistoquimica">
+                    <option value="1">Positivo</option>
+                    <option value="2">Negativo</option> 
+                    <option value="3">Inconclusivo</option>
+                    <option value="4">Não realizado</option>
+                </select>
+            </div> 
+        </fieldset>
+    </fieldset>
+   </form>
+    </div>
+    <!-- Botão Avançar -->
+<div class="next-button">
+    <button onclick="avancarPagina()">Avançar</button>
+</div>
+
+<script>
+    function voltarPagina() {
+        window.history.back();
+    }
+    
+    function avancarPagina() {
+        window.location.href = "hospitalizacao.html";
+    }
+</script>
+    <script>
+        function voltarPagina() {
+            window.history.back();
+        }
+    </script>
+</body>
+</html>
