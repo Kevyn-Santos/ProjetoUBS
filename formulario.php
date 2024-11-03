@@ -254,20 +254,20 @@ $gestantes = $stmtGE->fetchAll(PDO::FETCH_ASSOC);
                 <div class="row">
                     <div class="column">
                         <label for="sintomas">33 - Sinais clínicos:</label><br>
-                        <input type="checkbox" id="febre" name="Sinais-Clinicos[]" value="Febre">Febre
-                        <input type="checkbox" id="cefaleia" name="Sinais-Clinicos[]" value="Cefaleia">Cefaleia
-                        <input type="checkbox" id="vomito" name="Sinais-Clinicos[]" value="Vômito">Vômito
-                        <input type="checkbox" id="dor-nas-costas" name="Sinais-Clinicos[]" value="">Dor nas costas
-                        <input type="checkbox" id="artrite" name="Sinais-Clinicos[]" value="Dor nas costas">Artrite
-                        <input type="checkbox" id="petequias" name="Sinais-Clinicos[]" value="Petéquias">Petéquias
-                        <input type="checkbox" id="prova-do-laco-positiva" name="Sinais-Clinicos[]" value="Prova do laço positiva">Prova do laço positiva
-                        <input type="checkbox" id="mialgia" name="Sinais-Clinicos[]" value="Mialgia">Mialgia  <br>
-                        <input type="checkbox" id="exantema" name="Sinais-Clinicos[]" value="Exantema">Exantema
-                        <input type="checkbox" id="nauseas" name="Sinais-Clinicos[]" value="Náuseas">Náuseas
-                        <input type="checkbox" id="conjutivite" name="Sinais-Clinicos[]" value="Conjutivite">Conjutivite
-                        <input type="checkbox" id="artralgia-intensa" name="Sinais-Clinicos[]" value="Artralgia intensa">Artralgia intensa
-                        <input type="checkbox" id="leucopenia" name="Sinais-Clinicos[]" value="Leucopenia">Leucopenia
-                        <input type="checkbox" id="dor-retroorbital" name="Sinais-Clinicos[]" value="Dor retroorbital" >Dor retroorbital
+                        <input type="checkbox" id="febre" name="Sinais-Clinicos[]" value="1">Febre
+                        <input type="checkbox" id="cefaleia" name="Sinais-Clinicos[]" value="2">Cefaleia
+                        <input type="checkbox" id="vomito" name="Sinais-Clinicos[]" value="3">Vômito
+                        <input type="checkbox" id="dor-nas-costas" name="Sinais-Clinicos[]" value="4">Dor nas costas
+                        <input type="checkbox" id="artrite" name="Sinais-Clinicos[]" value="5">Artrite
+                        <input type="checkbox" id="petequias" name="Sinais-Clinicos[]" value="6">Petéquias
+                        <input type="checkbox" id="prova-do-laco-positiva" name="Sinais-Clinicos[]" value="7">Prova do laço positiva
+                        <input type="checkbox" id="mialgia" name="Sinais-Clinicos[]" value="8">Mialgia  <br>
+                        <input type="checkbox" id="exantema" name="Sinais-Clinicos[]" value="9">Exantema
+                        <input type="checkbox" id="nauseas" name="Sinais-Clinicos[]" value="10">Náuseas
+                        <input type="checkbox" id="conjutivite" name="Sinais-Clinicos[]" value="11">Conjutivite
+                        <input type="checkbox" id="artralgia-intensa" name="Sinais-Clinicos[]" value="12">Artralgia intensa
+                        <input type="checkbox" id="leucopenia" name="Sinais-Clinicos[]" value="13">Leucopenia
+                        <input type="checkbox" id="dor-retroorbital" name="Sinais-Clinicos[]" value="14" >Dor retroorbital
                     </div>
                     <div class="column">
                         <label for="doencas">34 - Doenças pré-existentes:</label>   <br>
@@ -502,15 +502,15 @@ $gestantes = $stmtGE->fetchAll(PDO::FETCH_ASSOC);
                     <legend>Dados Clínicos - Dengue com Sinais de Alarme e Dengue Grave</legend>
                     <div class="column">
                         <label for="sinais">68 - Dengue com sinais de alarme:</label>   <br>
-                        <input type="checkbox" id="hipotencao" name="dengueAlarme[]" value="Hipotensão postural e/ou lipotímia">Hipotensão postural e/ou lipotímia
-                        <input type="checkbox" id="queda-abrupta" name="dengueAlarme[]" value="Queda abrupta de plaquetas">Queda abrupta de plaquetas
-                        <input type="checkbox" id="vomitos" name="dengueAlarme[]" value="Vômitos persistentes">Vômitos persistentes  
-                        <input type="checkbox" id="dor-abdominal" name="dengueAlarme[]" value="Dor abdominal intensa e contínua">Dor abdominal intensa e contínua
-                        <input type="checkbox" id="letargia" name="dengueAlarme[]" value="Letargia ou irritabilidade">Letargia ou irritabilidade <br>
-                        <input type="checkbox" id="sangramento" name="dengueAlarme[]" value="Sangramento de mucosa/outras hemorragias">Sangramento de mucosa/outras hemorragias
-                        <input type="checkbox" id="aum-progressivo" name="dengueAlarme[]" value="Aumento progressivo do hematócrito">Aumento progressivo do hematócrito
-                        <input type="checkbox" id="hepatomegalia" name="dengueAlarme[]" value="Hepatomegalia >= 2cm">Hepatomegalia >= 2cm
-                        <input type="checkbox" id="acumulo-liq" name="dengueAlarme[]" value="Acúmulo de líquidos">Acúmulo de líquidos
+                        <input type="checkbox" id="hipotencao" name="dengueAlarme[]" value="1">Hipotensão postural e/ou lipotímia
+                        <input type="checkbox" id="queda-abrupta" name="dengueAlarme[]" value="2">Queda abrupta de plaquetas
+                        <input type="checkbox" id="vomitos" name="dengueAlarme[]" value="3">Vômitos persistentes  
+                        <input type="checkbox" id="dor-abdominal" name="dengueAlarme[]" value="4">Dor abdominal intensa e contínua
+                        <input type="checkbox" id="letargia" name="dengueAlarme[]" value="5">Letargia ou irritabilidade <br>
+                        <input type="checkbox" id="sangramento" name="dengueAlarme[]" value="6">Sangramento de mucosa/outras hemorragias
+                        <input type="checkbox" id="aum-progressivo" name="dengueAlarme[]" value="7">Aumento progressivo do hematócrito
+                        <input type="checkbox" id="hepatomegalia" name="dengueAlarme[]" value="8">Hepatomegalia >= 2cm
+                        <input type="checkbox" id="acumulo-liq" name="dengueAlarme[]" value="9">Acúmulo de líquidos
                     </div>
                     <div class="column">
                         <label for="data-inicio-sinais">69 - Data de início dos sinais de alarme:</label>
@@ -518,31 +518,32 @@ $gestantes = $stmtGE->fetchAll(PDO::FETCH_ASSOC);
                     </div>
                     <div class="column">
                         <br>
-                        <label for="dengue-grave">70 - Dengue com sinais de alarme:</label>   <br>
+                        <label for="dengue-grave">70 - Dengue com sinais graves:</label>   <br>
+
                         <h4>extravasamento grave de plasma</h4>
-                        <input type="checkbox" id="pulso" name="dengueGrave[]" value="Pulso débil ou indetectável">Pulso débil ou indetectável
-                        <input type="checkbox" id="convergente" name="dengueGrave[]" value="PA convergente <= 20 mmHg">PA convergente <= 20 mmHg
-                        <input type="checkbox" id="capilar" name="dengueGrave[]" value="Tempo de enchimento capilar">Tempo de enchimento capilar 
-                        <input type="checkbox" id="insuficiencia" name="dengueGrave[]" value="Acúmulo de líquidos com insuficiência respiratória">Acúmulo de líquidos com insuficiência respiratória
-                        <input type="checkbox" id="tarquicardia" name="dengueGrave[]" value="Taquicardia">Taquicardia <br>
-                        <input type="checkbox" id="extremidades" name="dengueGrave[]" value="Extremidades frias">Extremidades frias
-                        <input type="checkbox" id="hipotencao" name="dengueGrave[]" value="Hipotensão arterial em fase tardia">Hipotensão arterial em fase tardia
+                        <input type="checkbox" id="pulso" name="denguePlasma[]" value="1">Pulso débil ou indetectável
+                        <input type="checkbox" id="convergente" name="denguePlasma[]" value="2">PA convergente <= 20 mmHg
+                        <input type="checkbox" id="capilar" name="denguePlasma[]" value="3">Tempo de enchimento capilar 
+                        <input type="checkbox" id="insuficiencia" name="denguePlasma[]" value="4">Acúmulo de líquidos com insuficiência respiratória
+                        <input type="checkbox" id="tarquicardia" name="denguePlasma[]" value="5">Taquicardia <br>
+                        <input type="checkbox" id="extremidades" name="denguePlasma[]" value="6">Extremidades frias
+                        <input type="checkbox" id="hipotencao" name="denguePlasma[]" value="7">Hipotensão arterial em fase tardia
                     </div>
                     <div class="column">
                         <br>
                         <h4>sangramento grave</h4>
-                        <input type="checkbox" id="hematemese" name="sangramento[]" value="Hematêmese">Hematêmese
-                        <input type="checkbox" id="melena" name="sangramento[]" value="Melena">Melena
-                        <input type="checkbox" id="volumosa" name="sangramento[]" value="Metrorragia volumosa">Metrorragia volumosa
-                        <input type="checkbox" id="sangramento" name="sangramento[]" value="Sangramento do SNC">Sangramento do SNC
+                        <input type="checkbox" id="hematemese" name="sangramento[]" value="1">Hematêmese
+                        <input type="checkbox" id="melena" name="sangramento[]" value="2">Melena
+                        <input type="checkbox" id="volumosa" name="sangramento[]" value="3">Metrorragia volumosa
+                        <input type="checkbox" id="sangramento" name="sangramento[]" value="4">Sangramento do SNC
                     </div>
                     <div class="column">
                         <br>
                         <h4>compromentimento grave de órgãos</h4>
-                        <input type="checkbox" id="ast" name="compOrgaos[]" value="AST/ALT > 1.000">AST/ALT > 1.000
-                        <input type="checkbox" id="miocardite" name="compOrgaos[]" value="Miocardite">Miocardite
-                        <input type="checkbox" id="conciencia" name="compOrgaos[]" value="Alteração da consciência">Alteração da consciência
-                        <input type="checkbox" id="especificar" name="compOrgaos[]" value="Outros órgãos:">Outros órgãos, especificar
+                        <input type="checkbox" id="ast" name="compOrgaos[]" value="1">AST/ALT > 1.000
+                        <input type="checkbox" id="miocardite" name="compOrgaos[]" value="2">Miocardite
+                        <input type="checkbox" id="conciencia" name="compOrgaos[]" value="3">Alteração da consciência
+                        <input type="checkbox" id="especificar" name="compOrgaos[]" value="4:">Outros órgãos, especificar
                         <input type="text" id="especificacao" name="compOrgaos[]">
                     </div>
                     <div class="column">

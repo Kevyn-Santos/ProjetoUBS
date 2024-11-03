@@ -55,6 +55,21 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     //echo "$nomePaciente,  $date, $Idade, $Sexo, $Gestante, $Raca, $Escolaridade, $numeroCartaoSUS, $CPF, $nomeMae, $Ocupacao". '<br>';
 
     //dados de residencia
+/*     $_SESSION['cep'] = $_POST['cep'];
+    $_SESSION['uf-residencia'] = $_POST['uf-residencia'];
+    $_SESSION['municipio-residencia'] = $_POST['municipio-residencia'];
+    $_SESSION['codigo-ibge-residencia'] = $_POST['codigo-ibge-residencia'];
+    $_SESSION['bairro'] = $_POST['bairro'];
+    $_SESSION['logradouro'] = $_POST['logradouro'];
+    $_SESSION['codigo-residencia'] = $_POST['codigo-residencia'];
+    $_SESSION['numero'] = $_POST['numero'];
+    $_SESSION['ponto-referencia'] = $_POST['ponto-referencia'];
+    $_SESSION['destrito'] = $_POST['destrito'];
+    $_SESSION['complemento'] = $_POST['complemento'];
+    $_SESSION['telefone'] = $_POST['telefone'];
+    $_SESSION['geo1'] = $_POST['geo1']; 
+    $_SESSION['geo2'] = $_POST['geo2']; */
+       
     $CEP = $_POST['cep'];
     $UF = $_POST['uf-residencia'];
     $municipio = $_POST['municipio-residencia'];
@@ -67,12 +82,9 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     $distrito = $_POST['destrito'];
     $complemento = $_POST['complemento'];
     $DDD = $_POST['telefone'];
-    $geo1 = $_POST['geo1']; 
+    $geo1 = $_POST['geo1'];
     $geo2 = $_POST['geo2'];
-       
-
-
-
+    
     
     //crie um array com as doenças, insira elas no array, crie uma tabela internediaria que armazenará o id do paciente, as doenças que ele tem e o id de cada uma delas, adicione as doenças ao banco de dados a partir do array. Sendo assim, pode ser utilizado um select para as inserçoes(como no cadastro de usuarios), ou eu posso verificar cada doença no array, comparar com o banco, e se estiverem no bancom adicionar nesta tabela internediaria.
 
@@ -138,6 +150,27 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
             
         }
 
+        //Dados clinicos
+    
+        if(isset($_POST ['Sinais-Clinicos'])){
+            $SinaisClinicos = $_POST ['Sinais-Clinicos'];
+        }
+
+        //sinais de alarme
+        if(isset($_POST ['dengueAlarme'])){
+            $SinaisDeAlarme = $_POST ['dengueAlarme'];
+        }
+
+        //sinais de dengue plasma
+        if(isset($_POST ['denguePlasma'])){
+                $SinaisPlasma =$_POST ['denguePlasma'];
+        }
+
+        //sinais de sangramento
+        if(isset($_POST['sangramento'])){
+            $SangramentoGrave = $_POST['sangramento'];
+        }
+
         /* foreach($DoencasPE as $key){
             echo $key.'<br>';
         } */
@@ -169,15 +202,77 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
         $IdPaciente = $pdo->lastInsertId();
 
         /* inserção das doenças pre existentes do paciente */
-        $sqlDPE = "INSERT INTO DPEPac (IdPaciente, IdDoencaPE) VALUES (:IdPaciente, :IdDoencaPE)";
-            $stmtDPE = $pdo->prepare($sqlDPE);
+
+        if($DoencasPE){
+            $sqlDPE = "INSERT INTO DPEPac (IdPaciente, IdDoencaPE) VALUES (:IdPaciente, :IdDoencaPE)";
+                $stmtDPE = $pdo->prepare($sqlDPE);
+        
+                foreach($DoencasPE as $doencas){
+                    $stmtDPE->execute([
+                        'IdDoencaPE' => $doencas,
+                        'IdPaciente' => $IdPaciente
+                    ]);
+                }
+            
+        }
+
+
+        if($SinaisClinicos){
+            
+            $sqlSinais = "INSERT INTO SinaisClinicosPac (IdPaciente, IdSinais) VALUES (:IdPaciente, :IdSinais)";
+            $stmtS = $pdo->prepare($sqlSinais);
     
-            foreach($DoencasPE as $doencas){
-                $stmtDPE->execute([
-                    'IdDoencaPE' => $doencas,
+            foreach($SinaisClinicos as $sinais){
+                $stmtS->execute([
+                    'IdSinais' => $sinais,
                     'IdPaciente' => $IdPaciente
                 ]);
             }
+        }
+
+        if($SinaisDeAlarme){
+
+            $sqlAlarme = "INSERT INTO SinaisAlarmePac (IdPaciente, IdAlarme) VALUES (:IdPaciente, :IdAlarme)";
+            $stmtA = $pdo->prepare($sqlAlarme);
+    
+            foreach($SinaisDeAlarme as $alarme){
+                $stmtA->execute([
+                    'IdAlarme' => $alarme,
+                    'IdPaciente' => $IdPaciente
+                ]);
+            }
+        }else{}
+
+        if($SinaisPlasma){
+
+            $sqlPlasma = "INSERT INTO SinaisPlasmaPac (IdPaciente, IdPlasma) VALUES (:IdPaciente, :IdPlasma)";
+            $stmtP = $pdo->prepare($sqlPlasma);
+    
+            foreach($SinaisPlasma as $plasma){
+                $stmtP->execute([
+                    'IdPlasma' => $plasma,
+                    'IdPaciente' => $IdPaciente
+                ]);
+            }
+        }
+
+
+        if($SangramentoGrave){
+
+            $sqlSangramento = "INSERT INTO SinaisSangramentoPac (IdPaciente, IdSang) VALUES (:IdPaciente, :IdSang)";
+            $stmtSang = $pdo->prepare($sqlSangramento);
+    
+            foreach($SangramentoGrave as $sangramento){
+                $stmtSang->execute([
+                    'IdSang' => $sangramento,
+                    'IdPaciente' => $IdPaciente
+                ]);
+            }
+
+        }
+
+
+
 
         echo "
                            
@@ -196,21 +291,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     
 
     /*
-
-
-
-
-    //Dados clinicos
-    
-    if(isset($_POST ['Sinais-Clinicos'])){
-        $SinaisClinicos = $_POST ['Sinais-Clinicos'];
-            echo '<br>'."Sinais Clinicos: ". '<br>';
-        foreach($SinaisClinicos as $key){
-            print $key. '<br>';
-        }
-    }else{
-        echo '<br>'."não houveram sinais clinicos";
-    }
     
     
     
@@ -269,40 +349,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     $DataObito = $_POST['data-obito'];
     $DataEncerramento = $_POST['data-encerramento'];
 
-    //Dengue grave
-    
-    //sinais de alarme
-    if(isset($_POST ['dengueAlarme'])){
-        $SinaisDeAlarme = $_POST ['dengueAlarme'];
-            echo '<br>'."Dengue alarme: ". '<br>';
-        foreach($SinaisDeAlarme as $key){
-            print $key. '<br>';
-        }
-    }else{
-        echo '<br>'."não houve sinais de dengue alarmante";
-    }
-
-    //sinais de dengue grave
-    if(isset($_POST ['dengueGrave'])){
-        $SinaisGraves =$_POST ['dengueGrave'];
-            echo '<br>'."Dengue Grave: ". '<br>';
-        foreach($SinaisGrave as $key){
-            print $key. '<br>';
-        }
-    }else{
-        echo '<br>'."não houve sinais de dengue grave";
-    }
-    
-    //sinais de sangramento
-    if(isset($_POST['sangramento'])){
-        $SangramentoGrave = $_POST['sangramento'];
-            echo '<br>'."Sangramento: ". '<br>';
-        foreach($SangramentoGrave as $key){
-            print $key. '<br>';
-        }
-    }else{
-        echo '<br>'."não houve sinais de Sangramento";
-    }
 
     //sinais de orgãos comprometidos
     if(isset($_POST['compOrgaos'])){

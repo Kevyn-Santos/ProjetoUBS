@@ -177,7 +177,7 @@ CREATE TABLE Endereco( -- OK
 
 
 
---------Area de Doeças e sinais clinicos--------
+-------- Area de Doeças e sinais clinicos --------
 
 CREATE TABLE Doencas_Pre_Exist (  -- OK
   IdDoencaPE INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
@@ -220,7 +220,7 @@ IdOrgao INT AUTO_INCREMENT PRIMARY KEY,
 sinais_orgaos VARCHAR (150) NOT NULL
 );
 
---------Inserção de dados nas tabelas acima--------
+-------- Inserção de dados nas tabelas acima --------
 
 INSERT INTO Doencas_Pre_Exist (Doenca_Pre_Existentes) VALUES 
 ('Diabetes'),
@@ -304,6 +304,38 @@ CREATE TABLE DPEPac (
     IdDoencaPE int NOT NULL,
     FOREIGN KEY (IdPaciente) REFERENCES Paciente(IdPaciente),
     FOREIGN KEY (IdDoencaPE) REFERENCES Doencas_Pre_Exist(IdDoencaPE)
+);
+
+CREATE TABLE SinaisClinicosPac(
+  CodSinaisCLiPac int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  IdPaciente int NOT NULL,
+  IdSinais int NOT NULL,
+  FOREIGN KEY (IdPaciente) REFERENCES Paciente(IdPaciente),
+  FOREIGN KEY (IdSinais) REFERENCES Sinais_Cli(IdSinais)
+);
+
+CREATE TABLE SinaisAlarmePac(
+  CodSinaisAlarPac int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  IdPaciente int NOT NULL,
+  IdAlarme int NOT NULL,
+  FOREIGN KEY (IdPaciente) REFERENCES Paciente(IdPaciente),
+  FOREIGN KEY (IdAlarme) REFERENCES Dengue_Sinais(IdAlarme)
+);
+
+CREATE TABLE SinaisPlasmaPac(
+  CodSinaisPlasPac int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  IdPaciente int NOT NULL,
+  IdPlasma int NOT NULL,
+  FOREIGN KEY (IdPaciente) REFERENCES Paciente(IdPaciente),
+  FOREIGN KEY (IdPlasma) REFERENCES Dengue_Plasma(IdPlasma)
+);
+
+CREATE TABLE SinaisSangramentoPac(
+  CodSinaisSangPac int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  IdPaciente int NOT NULL,
+  IdSang int NOT NULL,
+  FOREIGN KEY (IdPaciente) REFERENCES Paciente(IdPaciente),
+  FOREIGN KEY (IdSang) REFERENCES Dengue_Sangramento(IdSang)
 );
 
     
